@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>POI on urban informatics | All things urban and data</title>
+    <link>/tags/poi/</link>
+    <description>Recent content in POI on urban informatics | All things urban and data</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    <lastBuildDate>Sat, 15 May 2021 00:00:00 +0000</lastBuildDate><atom:link href="/tags/poi/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Understanding Places of Interest</title>
+      <link>/blog/2021-04-26-understanding-places-of-interest/</link>
+      <pubDate>Sat, 15 May 2021 00:00:00 +0000</pubDate>
+      
+      <guid>/blog/2021-04-26-understanding-places-of-interest/</guid>
+      <description>Urban Informatics is a field of study based strictly on the urban environment and more specifically, cities.</description>
+    </item>
+    
+  </channel>
+</rss>

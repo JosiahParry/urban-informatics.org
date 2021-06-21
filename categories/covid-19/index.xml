@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>covid-19 on urban informatics | All things urban and data</title>
+    <link>/categories/covid-19/</link>
+    <description>Recent content in covid-19 on urban informatics | All things urban and data</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    <lastBuildDate>Fri, 23 Oct 2020 00:00:00 +0000</lastBuildDate><atom:link href="/categories/covid-19/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>A State of Being</title>
+      <link>/blog/2021-04-11-a-state-of-being/</link>
+      <pubDate>Fri, 23 Oct 2020 00:00:00 +0000</pubDate>
+      
+      <guid>/blog/2021-04-11-a-state-of-being/</guid>
+      <description>Studying Covid-19’s Effect on Community Vulnerability in Massachusetts The Covid-19 crisis has exposed the weak hidden foundations upon which our ‘prosperous’ society was built, and exacerbated visible ones.</description>
+    </item>
+    
+  </channel>
+</rss>

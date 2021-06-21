@@ -1,0 +1,12 @@
+---
+title: new post
+author: R package build
+date: '2021-04-10'
+slug: []
+categories: []
+tags: []
+#image: images/gallery/10.jpg
+---
+
+
+This is a new post. I wonder if it'll show up in the featured

@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>blog on urban informatics | All things urban and data</title>
+    <link>/blog/</link>
+    <description>Recent content in blog on urban informatics | All things urban and data</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    <lastBuildDate>Tue, 29 Oct 2019 13:49:23 +0600</lastBuildDate><atom:link href="/blog/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Understanding Places of Interest</title>
+      <link>/blog/2021-04-26-understanding-places-of-interest/</link>
+      <pubDate>Sat, 15 May 2021 00:00:00 +0000</pubDate>
+      
+      <guid>/blog/2021-04-26-understanding-places-of-interest/</guid>
+      <description>Urban Informatics is a field of study based strictly on the urban environment and more specifically, cities.</description>
+    </item>
+    
+    <item>
+      <title>Spatial Autocorrelation in R</title>
+      <link>/blog/2021-05-07-spatial-autocorrelation-in-r/</link>
+      <pubDate>Fri, 07 May 2021 00:00:00 +0000</pubDate>
+      
+      <guid>/blog/2021-05-07-spatial-autocorrelation-in-r/</guid>
+      <description>https://rspatial.org/raster/analysis/3-spauto.html
+library(sf) #&amp;gt; Linking to GEOS 3.8.1, GDAL 3.1.4, PROJ 6.</description>
+    </item>
+    
+    <item>
+      <title>Rethinking NIMBY</title>
+      <link>/blog/2021-04-25-rethinking-nimby/</link>
+      <pubDate>Sun, 25 Apr 2021 00:00:00 +0000</pubDate>
+      
+      <guid>/blog/2021-04-25-rethinking-nimby/</guid>
+      <description>A paper summary in 500ish words  &amp;ldquo;political conflict over LULUs is a struggle between capital and community via the intermediary of the state.</description>
+    </item>
+    
+    <item>
+      <title>Introducing the urban data collective</title>
+      <link>/blog/2021-04-11-introducing-the-urban-collective/</link>
+      <pubDate>Sun, 11 Apr 2021 00:00:00 +0000</pubDate>
+      
+      <guid>/blog/2021-04-11-introducing-the-urban-collective/</guid>
+      <description>The urban data collective (name under construction) was borne out of a desire to create an easy and non-academic resource for the field of urban informatics.</description>
+    </item>
+    
+    <item>
+      <title>A State of Being</title>
+      <link>/blog/2021-04-11-a-state-of-being/</link>
+      <pubDate>Fri, 23 Oct 2020 00:00:00 +0000</pubDate>
+      
+      <guid>/blog/2021-04-11-a-state-of-being/</guid>
+      <description>Studying Covid-19’s Effect on Community Vulnerability in Massachusetts The Covid-19 crisis has exposed the weak hidden foundations upon which our ‘prosperous’ society was built, and exacerbated visible ones.</description>
+    </item>
+    
+  </channel>
+</rss>

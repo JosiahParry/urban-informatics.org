@@ -1,0 +1,51 @@
+---
+title: Rethinking NIMBY
+author: Josiah Parry
+date: '2021-04-25'
+type: featured
+slug: []
+categories: []
+tags: []
+image: images/homeless_nimby.jpeg
+---
+
+### A paper summary in 500ish words
+
+> "political conflict over LULUs is a struggle between capital and community via the intermediary of the state." 
+
+
+[![Cartoon by Luke McGarry](/images/homeless_nimby.jpeg)](https://www.instagram.com/lukeymcgarry/?hl=en)
+
+<sub> Cartoon by Luke McGarry </sub>
+
+
+In order to understand the rising YIMBY movement, we need to first understand its progenitor, NIMBY. There is no better paper to start at than "Rethinking NIMBY" by Robert W. Lake (1993). In this paper Lake introduces us to the common conception of NIMBY, his nuanced view of NIMBY in relation to capitalism, and the necessary political process which creates the NIMBY movement. The paper may be more aptly titled "In Defense of NIMBY."
+
+NIMBY, or Not In My Back Yard, is an opposition movement to unwanted development of _locally unwanted land uses_ (LULU). LULUs are places like landfills, roads, recovery centers and the like which have some societal benefit. NIMBY is often thought to be "selfish" and "parochial" given these proposed developments serve some good—we all need roads, right? NIMBY has been a surprising success in thwarting developments in favor of "neighborhood ambiance." 
+
+Lake challenges general antipathy towards NIMBY by addressing a problematic understanding of LULUs. Those who oppose NIMBY make the assumption that LULUs provide a societal good. But what Lake points out is that they are a "particular solution to a problem."  Acceptance of LULUs accepts the status quo and assumes that there couldn't be a better solution to the problem. 
+
+Lake then points out that NIMBY is actually an inevitability and a sign of successful developments. Think of development like creating a product to sell. You need to have customers. In order to produce the product, you need investors who believe there will be profit. The same is true with development. Private investors build to a target consumer base to ensure future profit. Then people move in or start utilizing the developments creating a _land use pattern_. The development—say multifamily homes with local markets and cafés—will develop their own problems such as "low-density development, suburban sprawl, [and] inadequate services."
+
+We come to two challenges: 1) current consumers of the existing land use want to maintain the status quo. And 2) changes to the land use would be beneficial to investors to increase their profitability. Proposed changes to the land use are likely against NIMBY best interest but are in the best interest of private industry. 
+
+The propositions by private industry are not always in the interest of the existing neighborhood or in the best interest of society. Lake provides the example of hazardous waste incinerators. Hazardous waste is that, hazardous. Over a span of 15 years NIMBY collective action prevented a single incinerator from being built. Through this example we see that NIMBY can be an effective movement in challenging existing social structures. 
+
+
+Thus, we come to the conclusion that "local community perspective is not necessarily opposed to the societal good—but nor is it necessarily synonymous with it." Or more simply, the NIMBY movement can be helpful in challenging private industry and government to address the underlying issues that LULUs are meant to address. 
+
+--------
+
+#### Glossary
+   
+x[^nimby]
+x [^yimby]
+
+[^nimby]: NIMBY: not in my backyard
+[^yimby]: YIMBY: yes, in my backyard
+
+-	**NIMBY**: not in my back yard
+-	**YIMBY**: yes, in my back yard 
+    - sub-list
+-	**Zoning**
+-	**Land use pattern** --> 
