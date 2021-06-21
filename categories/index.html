@@ -174,63 +174,6 @@
     </article>
 </div>
           
-          <div class="col-md-6 mb-4">
-    <article class="card">
-        
-        <div class="card-body px-0">
-        
-        <a href="/categories/go-language/" class="h5 d-block my-3">Go Language</a>
-        <div class="mb-3 post-meta">
-            <span>By </span>
-            
-            
-            <span>Jan 01, 0001</span>
-            
-        </div>
-        <p class="card-text"></p>
-        <a href="/categories/go-language/" class="btn btn-outline-primary">read more</a>
-        </div>
-    </article>
-</div>
-          
-          <div class="col-md-6 mb-4">
-    <article class="card">
-        
-        <div class="card-body px-0">
-        
-        <a href="/categories/html/" class="h5 d-block my-3">HTML</a>
-        <div class="mb-3 post-meta">
-            <span>By </span>
-            
-            
-            <span>Jan 01, 0001</span>
-            
-        </div>
-        <p class="card-text"></p>
-        <a href="/categories/html/" class="btn btn-outline-primary">read more</a>
-        </div>
-    </article>
-</div>
-          
-          <div class="col-md-6 mb-4">
-    <article class="card">
-        
-        <div class="card-body px-0">
-        
-        <a href="/categories/web-design/" class="h5 d-block my-3">Web Design</a>
-        <div class="mb-3 post-meta">
-            <span>By </span>
-            
-            
-            <span>Jan 01, 0001</span>
-            
-        </div>
-        <p class="card-text"></p>
-        <a href="/categories/web-design/" class="btn btn-outline-primary">read more</a>
-        </div>
-    </article>
-</div>
-          
         </div>
       </div>
       
@@ -267,16 +210,25 @@
 
 <section class="section-sm">
   <div class="container">
+
+    
     <div class="row">
       <div class="col-lg-8 mx-auto text-center">
         <h2>Newsletter</h2>
         <p class="text-light px-md-5 py-4 border-left border-right border-primary">
-          Sign up for our quarterly newsletter to stay up to date.</p>
-        <form action="#" class="row justify-content-center">
+          Sign up for our (infrequent) newsletter to stay up to date.</p>
+        <form action="https://josiahparry.substack.com/api/v1/free?nojs=true" 
+  method="post" novalidate="" class="row justify-content-center">
           <div class="input-group col-md-8">
-            <input type="text" class="form-control" placeholder="Your Email Address">
+            <input type="text" name = "email" class="form-control" placeholder="Your Email Address">
+            <input type="hidden" name="first_url" value="https://josiahparry.substack.com/p/coming-soon">
+            <input type="hidden" name="first_referrer" value="https://substack.com/">
+            <input type="hidden" name="current_url" value="https://josiahparry.substack.com/embed">
+            <input type="hidden" name="current_referrer" value="http://localhost:4321/">
+            <input type="hidden" name="referral_code">
+            <input type="hidden" name="source" value="embed">
             <div class="input-group-append">
-              <button class="input-group-text btn btn-primary">Subscribe</button>
+              <button class="input-group-text btn btn-primary" type="submit" tabindex="0">Subscribe</button>
             </div>
           </div>
         </form>
@@ -284,6 +236,8 @@
     </div>
   </div>
 </section>
+
+
 
 
 <script>

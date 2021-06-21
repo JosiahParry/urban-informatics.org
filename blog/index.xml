@@ -17,16 +17,6 @@
     </item>
     
     <item>
-      <title>Spatial Autocorrelation in R</title>
-      <link>/blog/2021-05-07-spatial-autocorrelation-in-r/</link>
-      <pubDate>Fri, 07 May 2021 00:00:00 +0000</pubDate>
-      
-      <guid>/blog/2021-05-07-spatial-autocorrelation-in-r/</guid>
-      <description>https://rspatial.org/raster/analysis/3-spauto.html
-library(sf) #&amp;gt; Linking to GEOS 3.8.1, GDAL 3.1.4, PROJ 6.</description>
-    </item>
-    
-    <item>
       <title>Rethinking NIMBY</title>
       <link>/blog/2021-04-25-rethinking-nimby/</link>
       <pubDate>Sun, 25 Apr 2021 00:00:00 +0000</pubDate>
@@ -41,7 +31,7 @@ library(sf) #&amp;gt; Linking to GEOS 3.8.1, GDAL 3.1.4, PROJ 6.</description>
       <pubDate>Sun, 11 Apr 2021 00:00:00 +0000</pubDate>
       
       <guid>/blog/2021-04-11-introducing-the-urban-collective/</guid>
-      <description>The urban data collective (name under construction) was borne out of a desire to create an easy and non-academic resource for the field of urban informatics.</description>
+      <description>The urban data collective is an opportunity to create an publication that is solely focused on urban informatics.</description>
     </item>
     
     <item>

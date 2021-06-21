@@ -174,37 +174,28 @@
 <p>We come to two challenges: 1) current consumers of the existing land use want to maintain the status quo. And 2) changes to the land use would be beneficial to investors to increase their profitability. Proposed changes to the land use are likely against NIMBY best interest but are in the best interest of private industry.</p>
 <p>The propositions by private industry are not always in the interest of the existing neighborhood or in the best interest of society. Lake provides the example of hazardous waste incinerators. Hazardous waste is that, hazardous. Over a span of 15 years NIMBY collective action prevented a single incinerator from being built. Through this example we see that NIMBY can be an effective movement in challenging existing social structures.</p>
 <p>Thus, we come to the conclusion that &ldquo;local community perspective is not necessarily opposed to the societal good&mdash;but nor is it necessarily synonymous with it.&rdquo; Or more simply, the NIMBY movement can be helpful in challenging private industry and government to address the underlying issues that LULUs are meant to address.</p>
-<hr>
-<h4 id="glossary">Glossary</h4>
-<p>x<sup id="fnref:1"><a href="#fn:1" class="footnote-ref" role="doc-noteref">1</a></sup> x <sup id="fnref:2"><a href="#fn:2" class="footnote-ref" role="doc-noteref">2</a></sup></p>
-<ul>
-<li><strong>NIMBY</strong>: not in my back yard</li>
-<li><strong>YIMBY</strong>: yes, in my back yard
-<ul>
-<li>sub-list</li>
-</ul>
-</li>
-<li><strong>Zoning</strong></li>
-<li><strong>Land use pattern</strong> &ndash;&gt;</li>
-</ul>
-<section class="footnotes" role="doc-endnotes">
-<hr>
-<ol>
-<li id="fn:1" role="doc-endnote">
-<p>NIMBY: not in my backyard <a href="#fnref:1" class="footnote-backref" role="doc-backlink">&#x21a9;&#xfe0e;</a></p>
-</li>
-<li id="fn:2" role="doc-endnote">
-<p>YIMBY: yes, in my backyard <a href="#fnref:2" class="footnote-backref" role="doc-backlink">&#x21a9;&#xfe0e;</a></p>
-</li>
-</ol>
-</section>
+<!--
+
+#### Glossary
+   
+x[^nimby]
+x [^yimby]
+
+[^nimby]: NIMBY: not in my backyard
+[^yimby]: YIMBY: yes, in my backyard
+
+-   **NIMBY**: not in my back yard
+-   **YIMBY**: yes, in my back yard 
+    - sub-list
+-   **Zoning**
+-   **Land use pattern** -->
 
         </div>
 
         
         
         <script src="https://utteranc.es/client.js"
-          repo="josiahparry/urban-informatics"
+          repo="josiahparry/urban-informatics.org"
           issue-term="pathname"
           label="utterance"
           theme="github-light"
@@ -237,16 +228,25 @@
 
 <section class="section-sm">
   <div class="container">
+
+    
     <div class="row">
       <div class="col-lg-8 mx-auto text-center">
         <h2>Newsletter</h2>
         <p class="text-light px-md-5 py-4 border-left border-right border-primary">
-          Sign up for our quarterly newsletter to stay up to date.</p>
-        <form action="#" class="row justify-content-center">
+          Sign up for our (infrequent) newsletter to stay up to date.</p>
+        <form action="https://josiahparry.substack.com/api/v1/free?nojs=true" 
+  method="post" novalidate="" class="row justify-content-center">
           <div class="input-group col-md-8">
-            <input type="text" class="form-control" placeholder="Your Email Address">
+            <input type="text" name = "email" class="form-control" placeholder="Your Email Address">
+            <input type="hidden" name="first_url" value="https://josiahparry.substack.com/p/coming-soon">
+            <input type="hidden" name="first_referrer" value="https://substack.com/">
+            <input type="hidden" name="current_url" value="https://josiahparry.substack.com/embed">
+            <input type="hidden" name="current_referrer" value="http://localhost:4321/">
+            <input type="hidden" name="referral_code">
+            <input type="hidden" name="source" value="embed">
             <div class="input-group-append">
-              <button class="input-group-text btn btn-primary">Subscribe</button>
+              <button class="input-group-text btn btn-primary" type="submit" tabindex="0">Subscribe</button>
             </div>
           </div>
         </form>
@@ -254,6 +254,8 @@
     </div>
   </div>
 </section>
+
+
 
 
 <script>

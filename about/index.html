@@ -152,7 +152,7 @@
         <h4 class="widget-title">About</h4>
         <div class="content">
           <p>Urban Informatics is an inherently interdisciplinary academic school of thought that has it&rsquo;s origin in urban sociology, urban planning, and geography.</p>
-<p>The urban data collective strives to promote the field of urban informatics and democratize the knowledge of the field. The collective was started by three students of the Urban Informatics program at Northeastern University.</p>
+<p>The urban data collective strives to promote the field of urban informatics and democratize the knowledge of the field. The collective was started by Josiah Parry of the Urban Informatics program at Northeastern University.</p>
 
         </div>
       </div>
@@ -182,16 +182,25 @@
 
 <section class="section-sm">
   <div class="container">
+
+    
     <div class="row">
       <div class="col-lg-8 mx-auto text-center">
         <h2>Newsletter</h2>
         <p class="text-light px-md-5 py-4 border-left border-right border-primary">
-          Sign up for our quarterly newsletter to stay up to date.</p>
-        <form action="#" class="row justify-content-center">
+          Sign up for our (infrequent) newsletter to stay up to date.</p>
+        <form action="https://josiahparry.substack.com/api/v1/free?nojs=true" 
+  method="post" novalidate="" class="row justify-content-center">
           <div class="input-group col-md-8">
-            <input type="text" class="form-control" placeholder="Your Email Address">
+            <input type="text" name = "email" class="form-control" placeholder="Your Email Address">
+            <input type="hidden" name="first_url" value="https://josiahparry.substack.com/p/coming-soon">
+            <input type="hidden" name="first_referrer" value="https://substack.com/">
+            <input type="hidden" name="current_url" value="https://josiahparry.substack.com/embed">
+            <input type="hidden" name="current_referrer" value="http://localhost:4321/">
+            <input type="hidden" name="referral_code">
+            <input type="hidden" name="source" value="embed">
             <div class="input-group-append">
-              <button class="input-group-text btn btn-primary">Subscribe</button>
+              <button class="input-group-text btn btn-primary" type="submit" tabindex="0">Subscribe</button>
             </div>
           </div>
         </form>
@@ -199,6 +208,8 @@
     </div>
   </div>
 </section>
+
+
 
 
 <script>

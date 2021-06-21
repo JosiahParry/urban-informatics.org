@@ -18,12 +18,12 @@
     
     <item>
       <title>Spatial Autocorrelation in R</title>
-      <link>/blog/2021-05-07-spatial-autocorrelation-in-r/</link>
+      <link>/tutorials/2021-05-07-spatial-autocorrelation-in-r/</link>
       <pubDate>Fri, 07 May 2021 00:00:00 +0000</pubDate>
       
-      <guid>/blog/2021-05-07-spatial-autocorrelation-in-r/</guid>
-      <description>https://rspatial.org/raster/analysis/3-spauto.html
-library(sf) #&amp;gt; Linking to GEOS 3.8.1, GDAL 3.1.4, PROJ 6.</description>
+      <guid>/tutorials/2021-05-07-spatial-autocorrelation-in-r/</guid>
+      <description>Overview Tobler&amp;rsquo;s first law of geography states that
+ &amp;ldquo;everything is related to everything else, but near things are more related than distant things.</description>
     </item>
     
     <item>
@@ -41,7 +41,7 @@ library(sf) #&amp;gt; Linking to GEOS 3.8.1, GDAL 3.1.4, PROJ 6.</description>
       <pubDate>Sun, 11 Apr 2021 00:00:00 +0000</pubDate>
       
       <guid>/blog/2021-04-11-introducing-the-urban-collective/</guid>
-      <description>The urban data collective (name under construction) was borne out of a desire to create an easy and non-academic resource for the field of urban informatics.</description>
+      <description>The urban data collective is an opportunity to create an publication that is solely focused on urban informatics.</description>
     </item>
     
     <item>
@@ -51,43 +51,6 @@ library(sf) #&amp;gt; Linking to GEOS 3.8.1, GDAL 3.1.4, PROJ 6.</description>
       
       <guid>/blog/2021-04-11-a-state-of-being/</guid>
       <description>Studying Covid-19’s Effect on Community Vulnerability in Massachusetts The Covid-19 crisis has exposed the weak hidden foundations upon which our ‘prosperous’ society was built, and exacerbated visible ones.</description>
-    </item>
-    
-    <item>
-      <title>5th tutorial</title>
-      <link>/tutorials/post-5/</link>
-      <pubDate>Tue, 29 Oct 2019 10:07:47 +0600</pubDate>
-      
-      <guid>/tutorials/post-5/</guid>
-      <description>Heading 1 Heading 2 Heading 3 Heading 4 Heading 5 Heading 6  Emphasis Emphasis, aka italics, with asterisks or underscores.</description>
-    </item>
-    
-    <item>
-      <title>6th tutorial</title>
-      <link>/tutorials/post-6/</link>
-      <pubDate>Tue, 29 Oct 2019 10:07:47 +0600</pubDate>
-      
-      <guid>/tutorials/post-6/</guid>
-      <description>Heading 1 Heading 2 Heading 3 Heading 4 Heading 5 Heading 6  Emphasis Emphasis, aka italics, with asterisks or underscores.</description>
-    </item>
-    
-    <item>
-      <title>The forth tutorial</title>
-      <link>/tutorials/post-4/</link>
-      <pubDate>Tue, 29 Oct 2019 10:07:47 +0600</pubDate>
-      
-      <guid>/tutorials/post-4/</guid>
-      <description>Heading 1 Heading 2 Heading 3 Heading 4 Heading 5 Heading 6  Emphasis Emphasis, aka italics, with asterisks or underscores.</description>
-    </item>
-    
-    <item>
-      <title>Tutorial 3</title>
-      <link>/tutorials/post-3/</link>
-      <pubDate>Tue, 29 Oct 2019 10:07:47 +0600</pubDate>
-      
-      <guid>/tutorials/post-3/</guid>
-      <description>Emphasis Emphasis, aka italics, with asterisks or underscores.
-Strong emphasis, aka bold, with asterisks or underscores.</description>
     </item>
     
   </channel>

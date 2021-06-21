@@ -219,54 +219,18 @@
       <div class="col-lg-4 small-post-border">
         <article class="media">
           
-          <div class="recent-post-thumb mr-3" style="background-image: url('/images/post/post-3.jpg');"></div>
+          <div class="recent-post-thumb mr-3" style="background-image: url('/images/edu-hist.png');"></div>
           
           <div class="media-body">
             <div class="mb-3 post-meta">
-              <span>By </span>
+              <span>By Josiah Parry</span>
               
               
-              <span>Oct 29, 2019</span>
-              
-            </div>
-            <a href="/tutorials/post-6/" class="h5 d-block mb-3">6th tutorial</a>
-            <a href="/tutorials/post-6/" class="btn btn-outline-primary">read more</a>
-          </div>
-        </article>
-      </div>
-      
-      <div class="col-lg-4 small-post-border">
-        <article class="media">
-          
-          <div class="recent-post-thumb mr-3" style="background-image: url('/images/post/post-1.jpg');"></div>
-          
-          <div class="media-body">
-            <div class="mb-3 post-meta">
-              <span>By </span>
-              
-              
-              <span>Oct 29, 2019</span>
+              <span>May 07, 2021</span>
               
             </div>
-            <a href="/tutorials/post-4/" class="h5 d-block mb-3">The forth tutorial</a>
-            <a href="/tutorials/post-4/" class="btn btn-outline-primary">read more</a>
-          </div>
-        </article>
-      </div>
-      
-      <div class="col-lg-4 small-post-border">
-        <article class="media">
-          
-          <div class="media-body">
-            <div class="mb-3 post-meta">
-              <span>By </span>
-              
-              
-              <span>Oct 29, 2019</span>
-              
-            </div>
-            <a href="/tutorials/post-3/" class="h5 d-block mb-3">Tutorial 3</a>
-            <a href="/tutorials/post-3/" class="btn btn-outline-primary">read more</a>
+            <a href="/tutorials/2021-05-07-spatial-autocorrelation-in-r/" class="h5 d-block mb-3">Spatial Autocorrelation in R</a>
+            <a href="/tutorials/2021-05-07-spatial-autocorrelation-in-r/" class="btn btn-outline-primary">read more</a>
           </div>
         </article>
       </div>
@@ -324,32 +288,8 @@
                   <span>Apr 11, 2021</span>
                   
                 </div>
-                <p class="card-text">The urban data collective (name under construction) was borne out of a desire to create an easy and non-academic resource for the field of urban informatics.</p>
+                <p class="card-text">The urban data collective is an opportunity to create an publication that is solely focused on urban informatics.</p>
                 <a href="/blog/2021-04-11-introducing-the-urban-collective/" class="btn btn-outline-primary">read more</a>
-              </div>
-            </article>
-          </div>
-          
-          <div class="col-md-6 mb-4">
-            <article class="card">
-              
-              <img src="/images/post/post-2.jpg" class="card-img-top" alt="5th tutorial">
-              
-              <div class="card-body px-100">
-                
-                <a href="/categories/go-language"
-                  class="text-primary">Go language</a>
-                
-                <a href="/tutorials/post-5/" class="h5 d-block my-3">5th tutorial</a>
-                <div class="mb-3 post-meta">
-                  <span>By </span>
-                  
-                  
-                  <span>Oct 29, 2019</span>
-                  
-                </div>
-                <p class="card-text">Heading 1 Heading 2 Heading 3 Heading 4 Heading 5 Heading 6  Emphasis Emphasis, aka italics, with asterisks or underscores.</p>
-                <a href="/tutorials/post-5/" class="btn btn-outline-primary">read more</a>
               </div>
             </article>
           </div>
@@ -395,16 +335,25 @@
 
 <section class="section-sm">
   <div class="container">
+
+    
     <div class="row">
       <div class="col-lg-8 mx-auto text-center">
         <h2>Newsletter</h2>
         <p class="text-light px-md-5 py-4 border-left border-right border-primary">
-          Sign up for our quarterly newsletter to stay up to date.</p>
-        <form action="#" class="row justify-content-center">
+          Sign up for our (infrequent) newsletter to stay up to date.</p>
+        <form action="https://josiahparry.substack.com/api/v1/free?nojs=true" 
+  method="post" novalidate="" class="row justify-content-center">
           <div class="input-group col-md-8">
-            <input type="text" class="form-control" placeholder="Your Email Address">
+            <input type="text" name = "email" class="form-control" placeholder="Your Email Address">
+            <input type="hidden" name="first_url" value="https://josiahparry.substack.com/p/coming-soon">
+            <input type="hidden" name="first_referrer" value="https://substack.com/">
+            <input type="hidden" name="current_url" value="https://josiahparry.substack.com/embed">
+            <input type="hidden" name="current_referrer" value="http://localhost:4321/">
+            <input type="hidden" name="referral_code">
+            <input type="hidden" name="source" value="embed">
             <div class="input-group-append">
-              <button class="input-group-text btn btn-primary">Subscribe</button>
+              <button class="input-group-text btn btn-primary" type="submit" tabindex="0">Subscribe</button>
             </div>
           </div>
         </form>
@@ -412,6 +361,8 @@
     </div>
   </div>
 </section>
+
+
 
 
 <script>

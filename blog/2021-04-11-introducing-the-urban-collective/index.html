@@ -161,15 +161,15 @@
         
         
         <div class="content mb-5">
-          <p>The urban data collective (name under construction) was borne out of a desire to create an easy and non-academic resource for the field of urban informatics. Most, if not all, resources and sites dedicated to the topic in the field are jargon heavy or overly academic. Our intention is to produce content that is engaging, consumable, and above all else, useful.</p>
-<p>The <em>what</em> and <em>why</em> have not yet been entirely establish.</p>
+          <p>The urban data collective is an opportunity to create an publication that is solely focused on urban informatics. It is borne borne out of a desire to create an easy and non-academic resource for folks interested in or entering urban informtics. Most, if not all, resources and sites dedicated to the topic in the field are jargon heavy or overly academic. Our intention is to produce content that is engaging, consumable, and above all else, useful.</p>
+<p>As it is entitled a collective, we would like to see contributions from the community. If you woud like to contribute a blog post or a tutorial, please create an issue on the <a href="https://github.com/JosiahParry/urban-informatics.org/issues">github repository</a>.</p>
 
         </div>
 
         
         
         <script src="https://utteranc.es/client.js"
-          repo="josiahparry/urban-informatics"
+          repo="josiahparry/urban-informatics.org"
           issue-term="pathname"
           label="utterance"
           theme="github-light"
@@ -202,16 +202,25 @@
 
 <section class="section-sm">
   <div class="container">
+
+    
     <div class="row">
       <div class="col-lg-8 mx-auto text-center">
         <h2>Newsletter</h2>
         <p class="text-light px-md-5 py-4 border-left border-right border-primary">
-          Sign up for our quarterly newsletter to stay up to date.</p>
-        <form action="#" class="row justify-content-center">
+          Sign up for our (infrequent) newsletter to stay up to date.</p>
+        <form action="https://josiahparry.substack.com/api/v1/free?nojs=true" 
+  method="post" novalidate="" class="row justify-content-center">
           <div class="input-group col-md-8">
-            <input type="text" class="form-control" placeholder="Your Email Address">
+            <input type="text" name = "email" class="form-control" placeholder="Your Email Address">
+            <input type="hidden" name="first_url" value="https://josiahparry.substack.com/p/coming-soon">
+            <input type="hidden" name="first_referrer" value="https://substack.com/">
+            <input type="hidden" name="current_url" value="https://josiahparry.substack.com/embed">
+            <input type="hidden" name="current_referrer" value="http://localhost:4321/">
+            <input type="hidden" name="referral_code">
+            <input type="hidden" name="source" value="embed">
             <div class="input-group-append">
-              <button class="input-group-text btn btn-primary">Subscribe</button>
+              <button class="input-group-text btn btn-primary" type="submit" tabindex="0">Subscribe</button>
             </div>
           </div>
         </form>
@@ -219,6 +228,8 @@
     </div>
   </div>
 </section>
+
+
 
 
 <script>
