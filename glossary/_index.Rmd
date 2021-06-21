@@ -1,0 +1,19 @@
+---
+title: "Glossary"
+---
+
+Academia uses a vocabulary that can be a bit convoluted, a bit confusing, and frankly a bit exclusionary. We'll do our best to avoid using words like "concomitantly", "discursive" and the like. However, sometimes there are words that we can't help but use. Here is where we define those niche words. 
+
+
+#### Definitions 
+
+--------
+
+```{r results='asis', echo=FALSE}
+glossary_raw <- yaml::read_yaml("glossary-definitions.yaml")  
+gloss_vec <- unlist(glossary_raw)
+
+glossary_alphabetized <- gloss_vec[sort(names(gloss_vec))]
+
+cat(glue::glue("- **{names(glossary_alphabetized)}**: {glossary_alphabetized}"), sep = "\n")
+```

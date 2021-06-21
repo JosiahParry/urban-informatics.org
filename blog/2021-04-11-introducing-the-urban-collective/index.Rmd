@@ -1,0 +1,15 @@
+---
+title: Introducing the urban data collective
+author: Josiah Parry
+date: '2021-04-11'
+slug: []
+categories: []
+tags: []
+type: post
+image: images/suffolk.png
+---
+
+The urban data collective (name under construction) was borne out of a desire to create an easy and non-academic resource for the field of urban informatics. Most, if not all, resources and sites dedicated to the topic in the field are jargon heavy or overly academic. Our intention is to produce content that is engaging, consumable, and above all else, useful.
+
+The _what_ and _why_ have not yet been entirely establish. 
+
