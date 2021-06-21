@@ -9,7 +9,7 @@ type: post
 image: images/suffolk.png
 ---
 
-The urban data collective (name under construction) was borne out of a desire to create an easy and non-academic resource for the field of urban informatics. Most, if not all, resources and sites dedicated to the topic in the field are jargon heavy or overly academic. Our intention is to produce content that is engaging, consumable, and above all else, useful.
+The urban data collective is an opportunity to create an publication that is solely focused on urban informatics. It is borne  borne out of a desire to create an easy and non-academic resource for folks interested in or entering urban informtics. Most, if not all, resources and sites dedicated to the topic in the field are jargon heavy or overly academic. Our intention is to produce content that is engaging, consumable, and above all else, useful.
 
-The _what_ and _why_ have not yet been entirely establish. 
+As it is entitled a collective, we would like to see contributions from the community. If you woud like to contribute a blog post or a tutorial, please create an issue on the [github repository](https://github.com/JosiahParry/urban-informatics.org/issues). 
 

@@ -4,6 +4,7 @@ title: "Glossary"
 
 Academia uses a vocabulary that can be a bit convoluted, a bit confusing, and frankly a bit exclusionary. We'll do our best to avoid using words like "concomitantly", "discursive" and the like. However, sometimes there are words that we can't help but use. Here is where we define those niche words. 
 
+If there is a word that you feel needs a definition, please write it in [this issue](https://github.com/JosiahParry/urban-informatics.org/issues/2).
 
 #### Definitions 
 

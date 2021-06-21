@@ -8,40 +8,13 @@
     <language>en-us</language>
     <lastBuildDate>Tue, 29 Oct 2019 13:49:23 +0600</lastBuildDate><atom:link href="/tutorials/index.xml" rel="self" type="application/rss+xml" />
     <item>
-      <title>5th tutorial</title>
-      <link>/tutorials/post-5/</link>
-      <pubDate>Tue, 29 Oct 2019 10:07:47 +0600</pubDate>
+      <title>Spatial Autocorrelation in R</title>
+      <link>/tutorials/2021-05-07-spatial-autocorrelation-in-r/</link>
+      <pubDate>Fri, 07 May 2021 00:00:00 +0000</pubDate>
       
-      <guid>/tutorials/post-5/</guid>
-      <description>Heading 1 Heading 2 Heading 3 Heading 4 Heading 5 Heading 6  Emphasis Emphasis, aka italics, with asterisks or underscores.</description>
-    </item>
-    
-    <item>
-      <title>6th tutorial</title>
-      <link>/tutorials/post-6/</link>
-      <pubDate>Tue, 29 Oct 2019 10:07:47 +0600</pubDate>
-      
-      <guid>/tutorials/post-6/</guid>
-      <description>Heading 1 Heading 2 Heading 3 Heading 4 Heading 5 Heading 6  Emphasis Emphasis, aka italics, with asterisks or underscores.</description>
-    </item>
-    
-    <item>
-      <title>The forth tutorial</title>
-      <link>/tutorials/post-4/</link>
-      <pubDate>Tue, 29 Oct 2019 10:07:47 +0600</pubDate>
-      
-      <guid>/tutorials/post-4/</guid>
-      <description>Heading 1 Heading 2 Heading 3 Heading 4 Heading 5 Heading 6  Emphasis Emphasis, aka italics, with asterisks or underscores.</description>
-    </item>
-    
-    <item>
-      <title>Tutorial 3</title>
-      <link>/tutorials/post-3/</link>
-      <pubDate>Tue, 29 Oct 2019 10:07:47 +0600</pubDate>
-      
-      <guid>/tutorials/post-3/</guid>
-      <description>Emphasis Emphasis, aka italics, with asterisks or underscores.
-Strong emphasis, aka bold, with asterisks or underscores.</description>
+      <guid>/tutorials/2021-05-07-spatial-autocorrelation-in-r/</guid>
+      <description>Overview Tobler&amp;rsquo;s first law of geography states that
+ &amp;ldquo;everything is related to everything else, but near things are more related than distant things.</description>
     </item>
     
   </channel>

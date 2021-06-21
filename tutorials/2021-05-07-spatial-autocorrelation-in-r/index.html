@@ -1,0 +1,444 @@
+<!DOCTYPE html>
+<html lang="en-us"><head>
+  <meta charset="utf-8">
+  <title>urban informatics | All things urban and data</title>
+
+  <!-- mobile responsive meta -->
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="description" content="Urban Data Collective">
+  <meta name="author" content="Josiah Parry">
+  <meta name="generator" content="Hugo 0.82.0" />
+
+  <!-- plugins -->
+  
+  <link rel="stylesheet" href="/plugins/bootstrap/bootstrap.min.css ">
+  
+  <link rel="stylesheet" href="/plugins/slick/slick.css ">
+  
+  <link rel="stylesheet" href="/plugins/themify-icons/themify-icons.css ">
+  
+  <link rel="stylesheet" href="/plugins/venobox/venobox.css ">
+  
+
+  <!-- Main Stylesheet -->
+  
+  <link rel="stylesheet" href="/scss/style.min.css" media="screen">
+
+  <!--Favicon-->
+  <link rel="shortcut icon" href="/images/favicon.png " type="image/x-icon">
+  <link rel="icon" href="/images/favicon.png " type="image/x-icon">
+
+  <!-- google analitycs -->
+  <script>
+    (function (i, s, o, g, r, a, m) {
+      i['GoogleAnalyticsObject'] = r;
+      i[r] = i[r] || function () {
+        (i[r].q = i[r].q || []).push(arguments)
+      }, i[r].l = 1 * new Date();
+      a = s.createElement(o),
+        m = s.getElementsByTagName(o)[0];
+      a.async = 1;
+      a.src = g;
+      m.parentNode.insertBefore(a, m)
+    })(window, document, 'script', '//www.google-analytics.com/analytics.js', 'ga');
+    ga('create', 'UA-197096173-1', 'auto');
+    ga('send', 'pageview');
+  </script>
+
+</head><body>
+<!-- preloader start -->
+<div class="preloader">
+  
+</div>
+<!-- preloader end -->
+<!-- navigation -->
+<header class="navigation">
+  
+  
+  
+  <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.6.0/styles/atelier-estuary-light.min.css">
+<script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.6.0/highlight.min.js"></script>
+<script>hljs.initHighlightingOnLoad();</script>
+
+  <div class="container">
+    
+    <nav class="navbar navbar-expand-lg navbar-white bg-transparent border-bottom pl-0">
+      <a class="navbar-brand mobile-view" href="/">
+        
+         
+        
+        <h2 class="img-fluid">urban data collective </h2> 
+        </a>
+      <button class="navbar-toggler border-0" type="button" data-toggle="collapse" data-target="#navigation">
+        <i class="ti-menu h3"></i>
+      </button>
+
+      <div class="collapse navbar-collapse text-center" id="navigation">
+        <div class="desktop-view">
+          <ul class="navbar-nav mr-auto">
+            
+          </ul>
+        </div>
+
+        <a class="navbar-brand mx-auto desktop-view" href="/">
+          
+          
+          <h2 class="img-fluid">urban data collective </h2> 
+          </a>
+
+        <ul class="navbar-nav">
+          
+          
+          <li class="nav-item">
+            <a class="nav-link" href="/about">About</a>
+          </li>
+          
+          
+          
+          <li class="nav-item">
+            <a class="nav-link" href="/blog">Blog</a>
+          </li>
+          
+          
+          
+          <li class="nav-item">
+            <a class="nav-link" href="/contact">Contact</a>
+          </li>
+          
+          
+          
+          <li class="nav-item dropdown">
+            <a class="nav-link dropdown-toggle" href="#" role="button" data-toggle="dropdown" aria-haspopup="true"
+              aria-expanded="false">
+              Resources
+            </a>
+            <div class="dropdown-menu">
+              
+              <a class="dropdown-item" href="/tutorials">Tutorials</a>
+              
+              <a class="dropdown-item" href="/glossary">Glossary</a>
+              
+            </div>
+          </li>
+          
+          
+        </ul>
+
+        
+        <!-- search -->
+        <div class="search pl-lg-4">
+          <button id="searchOpen" class="search-btn"><i class="ti-search"></i></button>
+          <div class="search-wrapper">
+            <form action="//search" class="h-100">
+              <input class="search-box px-4" id="search-query" name="s" type="search" placeholder="Type & Hit Enter...">
+            </form>
+            <button id="searchClose" class="search-close"><i class="ti-close text-dark"></i></button>
+          </div>
+        </div>
+        
+
+        
+      </div>
+    </nav>
+  </div>
+</header>
+<!-- /navigation -->
+
+<section class="section-sm">
+  <div class="container">
+    <div class="row">
+      <div class="col-lg-8 mx-auto">
+        
+        <h2>Spatial Autocorrelation in R</h2>
+        <div class="mb-3 post-meta">
+          <span>By Josiah Parry</span>
+          
+            
+          <span> — May 07, 2021</span>
+          
+        </div>
+        
+        
+        
+        <div class="content mb-5">
+          <h2 id="overview">Overview</h2>
+<p>Tobler&rsquo;s first law of geography states that</p>
+<blockquote>
+<p>&ldquo;everything is related to everything else, but near things are more related than distant things.&rdquo; - Waldo Tobler (<a href="/papers/tobler.pdf">source</a>)</p>
+</blockquote>
+<p>In regular statistical analyses, we look at the relationship between two variables irrespective of their place in space. If there is a desire to account for space, this will likely be done by creating groups or regional identifiers that can be controlled for in a linear regression. For example, neighborhood or state level dummy variables or IDs.</p>
+<p>We can move beyond this naive approach to incorporating space into our analysis to something a bit more explicit. We can check to see if there are measurable spatial relationships in our dataset as opposed to strictly measuring numeric correlation.</p>
+<p>This post will introduce the concept of spatial autocorrelation. First we will create a dataset to work with. Then we&rsquo;ll review neighbors, weights, and autocorrelation.</p>
+<h3 id="creating-our-dataset">Creating our dataset</h3>
+<p>In this analysis, we will explore the spatial relationship of bachelor&rsquo;s degree attainment in Suffolk County (Greater Boston). The data we will be using comes from the <a href="https://ui.josiahparry.com">Urban Informatics Toolkit</a>&rsquo;s associate package <code>{uitk}</code>. This can be installed with <a href="https://remotes.r-lib.org/reference/install_github.html"><code>remotes::install_github(&quot;josiahparry/uitk&quot;)</code></a>.</p>
+<p>The package exports <code>acs_raw</code> which is a tibble containing socio-economic and demographic characteristics from the American Community Survey (ACS) as provided by the Boston Area Research Initiative (BARI). From the tibble, we&rsquo;ll select a few variables to explore throughout. These are the median household income (<code>med_house_income</code>), proportion of the population that uses public transit (<code>by_pub_trans</code>), proportion of the population with a bachelor&rsquo;s degree (<code>bach</code>), and then FIPS code. Additionally, there are a few missing values in our variables. We&rsquo;ll fill those in with median imputation.</p>
+<p>The object <code>suffolk_county</code> contains the boundary of each census tract and will be joined to the ACS data.</p>
+<div class="highlight">
+<pre class='chroma'><code class='language-r' data-lang='r'><span class='kr'><a href='https://rdrr.io/r/base/library.html'>library</a></span><span class='o'>(</span><span class='nv'><a href='https://r-spatial.github.io/sf/'>sf</a></span><span class='o'>)</span>
+<span class='kr'><a href='https://rdrr.io/r/base/library.html'>library</a></span><span class='o'>(</span><span class='nv'><a href='http://tidyverse.tidyverse.org'>tidyverse</a></span><span class='o'>)</span>
+
+<span class='nv'>acs</span> <span class='o'>&lt;-</span> <span class='nf'>select</span><span class='o'>(</span><span class='nf'>uitk</span><span class='nf'>::</span><span class='nv'><a href='https://rdrr.io/pkg/uitk/man/acs_raw.html'>acs_raw</a></span>, 
+              fips <span class='o'>=</span> <span class='nv'>ct_id_10</span>, <span class='nv'>med_house_income</span>, 
+              <span class='nv'>by_pub_trans</span>, <span class='nv'>bach</span><span class='o'>)</span> <span class='o'>%&gt;%</span> 
+  <span class='nf'>mutate</span><span class='o'>(</span>fips <span class='o'>=</span> <span class='nf'><a href='https://rdrr.io/r/base/character.html'>as.character</a></span><span class='o'>(</span><span class='nv'>fips</span><span class='o'>)</span>,
+         <span class='nf'>across</span><span class='o'>(</span>.cols <span class='o'>=</span> <span class='nf'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='o'>(</span><span class='nv'>med_house_income</span>, <span class='nv'>by_pub_trans</span>, <span class='nv'>bach</span><span class='o'>)</span>, 
+                <span class='o'>~</span><span class='nf'>replace_na</span><span class='o'>(</span><span class='nv'>.x</span>, <span class='nf'><a href='https://rdrr.io/r/stats/median.html'>median</a></span><span class='o'>(</span><span class='nv'>.x</span>, na.rm <span class='o'>=</span> <span class='kc'>TRUE</span><span class='o'>)</span><span class='o'>)</span><span class='o'>)</span><span class='o'>)</span>
+
+
+<span class='nv'>acs_sf</span> <span class='o'>&lt;-</span> <span class='nf'>left_join</span><span class='o'>(</span><span class='nf'>uitk</span><span class='nf'>::</span><span class='nv'><a href='https://rdrr.io/pkg/uitk/man/suffolk_county.html'>suffolk_county</a></span>, <span class='nv'>acs</span>, by <span class='o'>=</span> <span class='s'>"fips"</span><span class='o'>)</span></code></pre>
+</div>
+<p>Now that we have this object we can visualize how median household income is distributed numerically and geographically.</p>
+<div class="highlight">
+<pre class='chroma'><code class='language-r' data-lang='r'><span class='nv'>acs_sf</span> <span class='o'>%&gt;%</span> 
+  <span class='nf'>ggplot</span><span class='o'>(</span><span class='nf'>aes</span><span class='o'>(</span><span class='nv'>bach</span><span class='o'>)</span><span class='o'>)</span> <span class='o'>+</span>
+  <span class='nf'>geom_histogram</span><span class='o'>(</span>bins <span class='o'>=</span> <span class='m'>15</span>, fill <span class='o'>=</span> <span class='s'>"#528672"</span><span class='o'>)</span> <span class='o'>+</span>
+  <span class='nf'>theme_minimal</span><span class='o'>(</span><span class='o'>)</span> <span class='o'>+</span>
+  <span class='nf'>geom_vline</span><span class='o'>(</span><span class='nf'>aes</span><span class='o'>(</span>xintercept <span class='o'>=</span> <span class='nf'><a href='https://rdrr.io/r/base/mean.html'>mean</a></span><span class='o'>(</span><span class='nv'>bach</span><span class='o'>)</span><span class='o'>)</span>,
+             lty <span class='o'>=</span> <span class='m'>3</span>, size <span class='o'>=</span> <span class='m'>.75</span><span class='o'>)</span> <span class='o'>+</span>
+  <span class='nf'>labs</span><span class='o'>(</span>x <span class='o'>=</span> <span class='s'>"Median Household Income"</span>, y <span class='o'>=</span> <span class='s'>"Frequency"</span>, 
+       title <span class='o'>=</span> <span class='s'>"Distribution of Educational Attainment"</span><span class='o'>)</span>
+</code></pre>
+<p><img src="figs/unnamed-chunk-3-1.png" width="700px" style="display: block; margin: auto;" /></p>
+</div>
+<div class="highlight">
+<pre class='chroma'><code class='language-r' data-lang='r'><span class='nv'>acs_sf</span> <span class='o'>%&gt;%</span> 
+  <span class='nf'>mutate</span><span class='o'>(</span>bach_dec <span class='o'>=</span> <span class='nf'>ntile</span><span class='o'>(</span><span class='nv'>bach</span>, <span class='m'>10</span><span class='o'>)</span><span class='o'>)</span> <span class='o'>%&gt;%</span> 
+  <span class='nf'>ggplot</span><span class='o'>(</span><span class='nf'>aes</span><span class='o'>(</span>fill <span class='o'>=</span> <span class='nv'>bach_dec</span><span class='o'>)</span><span class='o'>)</span> <span class='o'>+</span>
+  <span class='nf'>geom_sf</span><span class='o'>(</span>lwd <span class='o'>=</span> <span class='m'>0.2</span>, color <span class='o'>=</span> <span class='s'>"black"</span><span class='o'>)</span> <span class='o'>+</span>
+  <span class='nf'>theme_void</span><span class='o'>(</span><span class='o'>)</span> <span class='o'>+</span>
+  <span class='nf'>scale_fill_gradient</span><span class='o'>(</span>high <span class='o'>=</span> <span class='s'>"#528672"</span>, n.breaks <span class='o'>=</span> <span class='m'>10</span><span class='o'>)</span> <span class='o'>+</span>
+  <span class='nf'>labs</span><span class='o'>(</span>title <span class='o'>=</span> <span class='s'>"Educational Attainment Deciles"</span><span class='o'>)</span> 
+</code></pre>
+<p><img src="figs/unnamed-chunk-4-1.png" width="700px" style="display: block; margin: auto;" /></p>
+</div>
+<p>From the graph and map we can see two things:</p>
+<ol>
+<li>The distribution of educational attainment is left skewed</li>
+<li>There appears to be clusters of low educational attainment in the north and the south</li>
+</ol>
+<p>How can we check to see if there is a significant spatial relationship? We&rsquo;ll need to look at the surrounding values of each observation.</p>
+<h2 id="understanding-spatial-autocorrelation">Understanding spatial autocorrelation</h2>
+<p>Typical correlation measures explores how two continuous variables are related to each other. Does one increase when the other does? Spatial autocorrelation looks to see if a variable has any relationship in how it is distributed across a geography. With spatial autocorrelation we can ask the question &ldquo;are like values near each other?&rdquo; With measures of spatial auto correlation we can only know if similar values cluster near each other. Or, inversely, near values are different from each other and far ones are similar.</p>
+<p>The most common measure of spatial autocorrelation is Moran&rsquo;s I. Moran&rsquo;s I is a number that typically ranges between -1 and 1 much like other correlation measures. Though Moran&rsquo;s I can exceed either boundary in some rare cases.</p>
+<p>When I approaches 1, we can interpret Moran&rsquo;s I as informing us that similar values tend to be nearby each other. When I approach -1, near values are dissimilar. We cannot determine whether the clusters are positively or negatively associated, though!</p>
+<h2 id="understanding-neighbors">Understanding neighbors</h2>
+<p>If we assume that there is a spatial relationship in our data, we are taking on the belief that our data are not completely independent of each other. If nearer things are more related, then census tracts that are close to each other will have similar values. In the urban literature there is a lot of discussion of <strong>&ldquo;spillover effects.&quot;</strong> A spillover effect is when a change in one neighborhood affects adjacent / nearby neighborhoods. This is in essence what we are trying to evaluate.</p>
+<p>Because we are concerned with what surrounding observations look like, we need to know which observations are nearby. There are a number of different ways in which <strong>neighbors</strong> can be identified. With polygon data we identify neighbors based on their contiguity. To be contiguous means to be connected or touching&mdash;think of the <em>contiguous</em> lower 48 states.</p>
+<h3 id="contiguities">Contiguities</h3>
+<p>The two most common contiguities are based on the game of chess. Let&rsquo;s take a simple chess board (code included because it&rsquo;s a fun trick 😄).</p>
+<div class="highlight">
+<pre class='chroma'><code class='language-r' data-lang='r'><span class='nv'>chess_board</span> <span class='o'>&lt;-</span> <span class='nf'><a href='https://rdrr.io/r/base/expand.grid.html'>expand.grid</a></span><span class='o'>(</span>x <span class='o'>=</span> <span class='m'>1</span><span class='o'>:</span><span class='m'>8</span>, y <span class='o'>=</span> <span class='m'>1</span><span class='o'>:</span><span class='m'>8</span><span class='o'>)</span> <span class='o'>%&gt;%</span> 
+  <span class='nf'>mutate</span><span class='o'>(</span>z <span class='o'>=</span> <span class='nf'><a href='https://rdrr.io/r/base/ifelse.html'>ifelse</a></span><span class='o'>(</span><span class='o'>(</span><span class='nv'>x</span> <span class='o'>+</span> <span class='nv'>y</span><span class='o'>)</span> <span class='o'>%%</span> <span class='m'>2</span> <span class='o'>==</span> <span class='m'>0</span>, <span class='kc'>TRUE</span>, <span class='kc'>FALSE</span><span class='o'>)</span><span class='o'>)</span>
+
+<span class='nv'>board</span> <span class='o'>&lt;-</span> <span class='nv'>chess_board</span> <span class='o'>%&gt;%</span> 
+  <span class='nf'>ggplot</span><span class='o'>(</span><span class='nf'>aes</span><span class='o'>(</span><span class='nv'>x</span>, <span class='nv'>y</span>, fill <span class='o'>=</span> <span class='nv'>z</span><span class='o'>)</span><span class='o'>)</span> <span class='o'>+</span> 
+  <span class='nf'>geom_tile</span><span class='o'>(</span><span class='o'>)</span> <span class='o'>+</span>
+  <span class='nf'>scale_fill_manual</span><span class='o'>(</span>values <span class='o'>=</span> <span class='nf'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='o'>(</span><span class='s'>"white"</span>, <span class='s'>"black"</span><span class='o'>)</span><span class='o'>)</span> <span class='o'>+</span>
+  <span class='nf'>theme_void</span><span class='o'>(</span><span class='o'>)</span> <span class='o'>+</span>
+  <span class='nf'>coord_fixed</span><span class='o'>(</span><span class='o'>)</span> <span class='o'>+</span>
+  <span class='nf'>theme</span><span class='o'>(</span>legend.position <span class='o'>=</span> <span class='s'>"none"</span><span class='o'>)</span>
+
+<span class='nv'>board</span>
+</code></pre>
+<p><img src="figs/unnamed-chunk-5-1.png" width="700px" style="display: block; margin: auto;" /></p>
+</div>
+<p>In chess each piece can move in a different way. All pieces, with the exception of the knight, move either diagonally or horizontally and vertically. The most common contiguities are queen and rook contiguities. In chess, a queen can move diagonally and horizontal and vertically whereas a rook can only move horizontal and vertically.</p>
+<div class="highlight">
+<p><img src="figs/unnamed-chunk-6-1.png" width="700px" style="display: block; margin: auto;" /></p>
+</div>
+<p>We extend this idea to polygons. Queen contiguities identify neighbors based on any polygon that is touching. With rook contiguities, we identify neighbors based on polygons that touch on the side. For most social science research, we only need to be concerned with queen contiguities.</p>
+<div class="highlight">
+</div>
+<p>While a chess board might make intuitive sense, geographies are really wonky in real life. Let&rsquo;s take a random census tract in Suffolk County and look at its queen contiguity.</p>
+<div class="highlight">
+<p><img src="figs/unnamed-chunk-8-1.png" width="700px" style="display: block; margin: auto;" /></p>
+</div>
+<p>You can see that any tract that is touching, even at a corner, will be considered a neighbor to the point in question. This will be done for <em>every</em> polygon in our dataset. We can create a network diagram of our spatial object which can be helpful or exploring these spatial relationships visually and encourage a network based approach.</p>
+<div class="highlight">
+<p><img src="figs/unnamed-chunk-9-1.png" width="700px" style="display: block; margin: auto;" /></p>
+</div>
+<h2 id="understanding-the-spatial-weights">Understanding the spatial weights</h2>
+<p>Once neighbors are identified, they can then be used to calculate <strong>spatial weights</strong>. These weights will be used to identify the average local household income for surrounding census tracts. However, prior to doing so, we must know how much influence each observation will have in calculating that local estimate.</p>
+<p>The typical method of calculating the spatial weights is through row standardization. In essence, each neighbor that touches our census tract will be assigned an equal weight. We do this by assigning each neighbor a value of 1 then dividing by the number of neighbors. So if we have 5 neighboring census tracts, each of them will have a spatial weight of 0.2 (1 / 5 = 0.2).</p>
+<p>Going back to the chess board example, we can take the position d4 and look at the queen contiguities. There are 8 squares that immediately touch the square. Each one of these squares is considered a neighbor and given a value of 1. Then each square is divided by the total number or neighbors, 8.</p>
+<div class="highlight">
+<p><img src="figs/unnamed-chunk-10-1.png" width="700px" style="display: block; margin: auto;" /></p>
+</div>
+<p>Very simply it looks like the following</p>
+<div class="highlight">
+<pre class='chroma'><code class='language-r' data-lang='r'><span class='o'>(</span><span class='nv'>d4_nbs</span> <span class='o'>&lt;-</span> <span class='nf'><a href='https://rdrr.io/r/base/rep.html'>rep</a></span><span class='o'>(</span><span class='m'>1</span>, <span class='m'>8</span><span class='o'>)</span><span class='o'>)</span>
+<span class='c'>#&gt; [1] 1 1 1 1 1 1 1 1</span>
+
+<span class='nv'>d4_nbs</span> <span class='o'>/</span> <span class='nf'><a href='https://rdrr.io/r/base/length.html'>length</a></span><span class='o'>(</span><span class='nv'>d4_nbs</span><span class='o'>)</span>
+<span class='c'>#&gt; [1] 0.125 0.125 0.125 0.125 0.125 0.125 0.125 0.125</span></code></pre>
+</div>
+<h3 id="defining-neighbor-relationships">Defining neighbor relationships</h3>
+<p>Now that we have a general understanding of neighbors and weights we can go ahead and and begin to create do the work in R. For this we will use the package <code>sfweight</code>. Currently the package is not on CRAN and needs to be installed from GitHub. Install the package with the following: <a href="https://remotes.r-lib.org/reference/install_github.html"><code>remotes::install_github(&quot;josiahparry/sfweight&quot;)</code></a>.</p>
+<p>There are two functions that we will be using from this package: <a href="https://rdrr.io/pkg/sfweight/man/st_neighbors.html"><code>st_neighbors()</code></a> and <a href="https://rdrr.io/pkg/sfweight/man/st_weights.html"><code>st_weights()</code></a>. The former will take the geometry column of an sf object and create a list column containing the neighbor indexes for that observation. <a href="https://rdrr.io/pkg/sfweight/man/st_weights.html"><code>st_weights()</code></a> will take the neighbors list and calculate a list column of weights. These functions work nicely with the tidyverse workflow so we can calculate both the neighbors and weights in one mutate function call.</p>
+<div class="highlight">
+<pre class='chroma'><code class='language-r' data-lang='r'><span class='kr'><a href='https://rdrr.io/r/base/library.html'>library</a></span><span class='o'>(</span><span class='nv'>sfweight</span><span class='o'>)</span>
+
+<span class='nv'>acs_nbs</span> <span class='o'>&lt;-</span> <span class='nv'>acs_sf</span> <span class='o'>%&gt;%</span> 
+  <span class='nf'>mutate</span><span class='o'>(</span>nb <span class='o'>=</span> <span class='nf'><a href='https://rdrr.io/pkg/sfweight/man/st_neighbors.html'>st_neighbors</a></span><span class='o'>(</span><span class='nv'>geometry</span><span class='o'>)</span>,
+         wt <span class='o'>=</span> <span class='nf'><a href='https://rdrr.io/pkg/sfweight/man/st_weights.html'>st_weights</a></span><span class='o'>(</span><span class='nv'>nb</span><span class='o'>)</span><span class='o'>)</span></code></pre>
+</div>
+<p>It was easy as that. We can look at the neighbor and weights columns. Notice how they are always of the same length for each row.</p>
+<p>Neighbors list:</p>
+<div class="highlight">
+<pre class='chroma'><code class='language-r' data-lang='r'><span class='nf'>pull</span><span class='o'>(</span><span class='nv'>acs_nbs</span>, <span class='nv'>nb</span><span class='o'>)</span><span class='o'>[</span><span class='m'>1</span><span class='o'>:</span><span class='m'>5</span><span class='o'>]</span>
+<span class='c'>#&gt; [[1]]</span>
+<span class='c'>#&gt; [1]   2  15 168 171 172 179 180</span>
+<span class='c'>#&gt; </span>
+<span class='c'>#&gt; [[2]]</span>
+<span class='c'>#&gt; [1]   1  71 180</span>
+<span class='c'>#&gt; </span>
+<span class='c'>#&gt; [[3]]</span>
+<span class='c'>#&gt; [1]  45  50  92 122</span>
+<span class='c'>#&gt; </span>
+<span class='c'>#&gt; [[4]]</span>
+<span class='c'>#&gt; [1]  30  84 127 135 136 138</span>
+<span class='c'>#&gt; </span>
+<span class='c'>#&gt; [[5]]</span>
+<span class='c'>#&gt; [1]  34  87 100 108</span></code></pre>
+</div>
+<p>Weights list:</p>
+<div class="highlight">
+<pre class='chroma'><code class='language-r' data-lang='r'><span class='nf'>pull</span><span class='o'>(</span><span class='nv'>acs_nbs</span>, <span class='nv'>wt</span><span class='o'>)</span><span class='o'>[</span><span class='m'>1</span><span class='o'>:</span><span class='m'>5</span><span class='o'>]</span>
+<span class='c'>#&gt; [[1]]</span>
+<span class='c'>#&gt; [1] 0.1428571 0.1428571 0.1428571 0.1428571 0.1428571 0.1428571 0.1428571</span>
+<span class='c'>#&gt; </span>
+<span class='c'>#&gt; [[2]]</span>
+<span class='c'>#&gt; [1] 0.3333333 0.3333333 0.3333333</span>
+<span class='c'>#&gt; </span>
+<span class='c'>#&gt; [[3]]</span>
+<span class='c'>#&gt; [1] 0.25 0.25 0.25 0.25</span>
+<span class='c'>#&gt; </span>
+<span class='c'>#&gt; [[4]]</span>
+<span class='c'>#&gt; [1] 0.1666667 0.1666667 0.1666667 0.1666667 0.1666667 0.1666667</span>
+<span class='c'>#&gt; </span>
+<span class='c'>#&gt; [[5]]</span>
+<span class='c'>#&gt; [1] 0.25 0.25 0.25 0.25</span></code></pre>
+</div>
+<h2 id="measuring-spatial-autocorrelation">Measuring spatial autocorrelation</h2>
+<p>With all of our measures in place, we can calculate Moran&rsquo;s I and check to see if there is any spatial autocorrelation.</p>
+<div class="highlight">
+<pre class='chroma'><code class='language-r' data-lang='r'><span class='nv'>acs_nbs</span> <span class='o'>%&gt;%</span> 
+  <span class='nf'><a href='https://rdrr.io/pkg/sfweight/man/moran_test.html'>moran_test</a></span><span class='o'>(</span><span class='nv'>bach</span>, <span class='nv'>nb</span>, <span class='nv'>wt</span><span class='o'>)</span>
+<span class='c'>#&gt; </span>
+<span class='c'>#&gt;   Moran I test under randomisation</span>
+<span class='c'>#&gt; </span>
+<span class='c'>#&gt; data:  var  </span>
+<span class='c'>#&gt; weights: listw    </span>
+<span class='c'>#&gt; </span>
+<span class='c'>#&gt; Moran I statistic standard deviate = 14.037, p-value &lt; 2.2e-16</span>
+<span class='c'>#&gt; alternative hypothesis: greater</span>
+<span class='c'>#&gt; sample estimates:</span>
+<span class='c'>#&gt; Moran I statistic       Expectation          Variance </span>
+<span class='c'>#&gt;       0.596022182      -0.004950495       0.001833067</span></code></pre>
+</div>
+<p>With this result we can tell that there is a somewhat strong spatial relationship in bachelor&rsquo;s degree attainment throughout Suffolk County. To explore <em>where</em> these clusters are we can use the local Moran&rsquo;s I. This will be covered in a forth coming post.</p>
+<h4 id="miscellaneous-resources">Miscellaneous Resources</h4>
+<ul>
+<li>resource: <a href="https://spatiolog.blogspot.com/2019/01/contiguity-based-spatial-weights-matrix.html">https://spatiolog.blogspot.com/2019/01/contiguity-based-spatial-weights-matrix.html</a></li>
+<li><a href="https://www.e-education.psu.edu/geog586/node/672#">https://www.e-education.psu.edu/geog586/node/672#</a>:~:text=The%20Moran%20scatterplot%20is%20an,same%20attribute%20at%20neighboring%20locations.</li>
+<li><a href="https://geographicdata.science/book/notebooks/07_local_autocorrelation.html">https://geographicdata.science/book/notebooks/07_local_autocorrelation.html</a></li>
+<li><a href="https://rspatial.org/raster/analysis/3-spauto.html">https://rspatial.org/raster/analysis/3-spauto.html</a></li>
+<li><a href="http://www.dpi.inpe.br/gilberto/tutorials/software/geoda/tutorials/w8_weights.pdf">http://www.dpi.inpe.br/gilberto/tutorials/software/geoda/tutorials/w8_weights.pdf</a></li>
+</ul>
+
+        </div>
+
+        
+        
+        <script src="https://utteranc.es/client.js"
+          repo="josiahparry/urban-informatics.org"
+          issue-term="pathname"
+          label="utterance"
+          theme="github-light"
+          crossorigin="anonymous"
+          async>
+        </script>
+
+      </div>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="container">
+    <div class="row justify-content-center">
+      <div class="col-12 text-center mb-5">
+        <a href="/">
+          
+          <h4>urban data collective | all things urban and data</h4>
+          </a>
+      </div>
+     
+      <div class="col-12 border-top py-4 text-center">
+        copyright © 2021 urban data collective all rights reserved
+      </div>
+    </div>
+  </div>
+</footer>
+
+
+<section class="section-sm">
+  <div class="container">
+
+    
+    <div class="row">
+      <div class="col-lg-8 mx-auto text-center">
+        <h2>Newsletter</h2>
+        <p class="text-light px-md-5 py-4 border-left border-right border-primary">
+          Sign up for our (infrequent) newsletter to stay up to date.</p>
+        <form action="https://josiahparry.substack.com/api/v1/free?nojs=true" 
+  method="post" novalidate="" class="row justify-content-center">
+          <div class="input-group col-md-8">
+            <input type="text" name = "email" class="form-control" placeholder="Your Email Address">
+            <input type="hidden" name="first_url" value="https://josiahparry.substack.com/p/coming-soon">
+            <input type="hidden" name="first_referrer" value="https://substack.com/">
+            <input type="hidden" name="current_url" value="https://josiahparry.substack.com/embed">
+            <input type="hidden" name="current_referrer" value="http://localhost:4321/">
+            <input type="hidden" name="referral_code">
+            <input type="hidden" name="source" value="embed">
+            <div class="input-group-append">
+              <button class="input-group-text btn btn-primary" type="submit" tabindex="0">Subscribe</button>
+            </div>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+
+
+<script>
+  var indexURL = "/index.json"
+</script>
+
+<!-- JS Plugins -->
+
+<script src="/plugins/jQuery/jquery.min.js"></script>
+
+<script src="/plugins/bootstrap/bootstrap.min.js"></script>
+
+<script src="/plugins/slick/slick.min.js"></script>
+
+<script src="/plugins/venobox/venobox.min.js"></script>
+
+<script src="/plugins/search/fuse.min.js"></script>
+
+<script src="/plugins/search/mark.js"></script>
+
+<script src="/plugins/search/search.js"></script>
+
+<!-- Main Script -->
+
+<script src="/js/script.min.js"></script>
+
+
+
+</body>
+</html>
