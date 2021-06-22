@@ -6,7 +6,25 @@
     <description>Recent content in Tags on urban informatics | All things urban and data</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <lastBuildDate>Sat, 15 May 2021 00:00:00 +0000</lastBuildDate><atom:link href="/tags/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Tue, 22 Jun 2021 00:00:00 +0000</lastBuildDate><atom:link href="/tags/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>rspatial</title>
+      <link>/tags/rspatial/</link>
+      <pubDate>Tue, 22 Jun 2021 00:00:00 +0000</pubDate>
+      
+      <guid>/tags/rspatial/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>sfweight</title>
+      <link>/tags/sfweight/</link>
+      <pubDate>Tue, 22 Jun 2021 00:00:00 +0000</pubDate>
+      
+      <guid>/tags/sfweight/</guid>
+      <description></description>
+    </item>
+    
     <item>
       <title>POI</title>
       <link>/tags/poi/</link>

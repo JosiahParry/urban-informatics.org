@@ -1,0 +1,190 @@
+---
+title: LISA, what's spatial lag?
+author: Josiah Parry
+date: '2021-06-22'
+image: images/lisa-plot.png
+slug: []
+type: tutorial
+categories: [tutorial]
+tags: [sfweight, rspatial]
+---
+
+```{r include=FALSE}
+knitr::opts_chunk$set(message=FALSE, warning=FALSE)
+ggplot2::theme_set(ggplot2::theme_minimal())
+
+print.sf <- function(x, ...) {
+  as_tibble(x) %>% 
+    select(-geometry) %>% 
+    print()
+}
+```
+
+
+In the [last tutorial](https://www.urban-informatics.org/tutorials/2021-05-07-spatial-autocorrelation-in-r/) we went over the concept of spatial autocorrelation and Moran's I. Moran's I is a global measure meaning it characterizes the entire dataset. It is helpful in informing us that there is or is not some degree of spatialness to our data. But it doesn't help us understand _where_ clustering might occur. For that, we need to move our analysis down to a more local level. 
+
+Alternative to Moran's I measure of global autocorrelation, we can use **local indicators of spatial association (LISA)**. Moran's I looks at all units collectively whereas LISA calculates an I for each group of neighbors. If Moran's I does not indicate a global autocorrelation, that does not rule out the possibility of any local clustering which can be sussed out with LISA. 
+
+
+## Getting started
+
+For this tutorial we will use the same dataset as previously. Below is the code used to create the sf object. Note that if you haven't yet installed `{sfweight}` you will need to do so with `remotes::install_github("josiahparry/sfweight")`. 
+
+```{r}
+library(sf)
+library(sfweight)
+library(tidyverse)
+
+acs <- select(uitk::acs_raw, 
+              fips = ct_id_10, med_house_income, 
+              by_pub_trans, bach) %>% 
+  mutate(fips = as.character(fips),
+         across(.cols = c(med_house_income, by_pub_trans, bach), 
+                ~replace_na(.x, median(.x, na.rm = TRUE))))
+
+
+acs_sf <- left_join(uitk::suffolk_county, acs, by = "fips")
+```
+
+In order to calculate local measures of spatial autocorrelation, we will need three things: 
+
+1. neighbors of each observation
+2. spatial weights
+3. spatial lag
+
+We've previously covered the first two items, but not the third. Before we jump into spatially lagged variables, let's create the neighbors and weights and store them in an object `acs_nb`. 
+
+```{r}
+acs_nb <- acs_sf %>% 
+  mutate(nb = st_neighbors(geometry),
+         wt = st_weights(nb))
+```
+
+
+## The spatial lag
+
+With the neighbors and weight matrix calculated, we can begin the process of calculating our LISA. In order to do so we must calculate the **spatial lag**. The spatial lag takes our variable of interest and averages it for a location's neighbors. By taking the average we are accounting for neighborhood effects and this local average can then be compared with the locations actual value to see if there is a discrepancy between itself and its neighbors. 
+
+Let's look at the first observation in our `acs_nb` object to see how this is calculated. First we'll take the neighbor indexes from the `nb` list column. Then we'll use that to grab those rows and the original observation itself using `slice()`. 
+
+```{r}
+# grab neighbors
+nb_index <- slice(acs_nb, 1) %>% 
+  pull(nb) %>% 
+  pluck(1)
+
+# slice to only neighbor rows and original row
+nb_1 <- acs_nb %>% 
+  slice(1, nb_index) %>% 
+  select(bach)
+
+# plot bach
+ggplot(nb_1, aes(fill = bach)) + 
+  geom_sf(lwd = 0.2, color = "black") +
+  scale_fill_gradient(high = "#528672")
+```
+
+We can see that the middle census tract may has quite a low level of educational attainment when compared to the tract above and to it's lower right. To calculate the spatial lag of this census tract, we need to take the average of all observations. Their values are as follows
+
+```{r}
+nb_1
+```
+To calculate the average we can pull out the `bach` vector, excluding the observation itself, and take the mean.
+
+```{r}
+nb_1 %>% 
+  slice(-1) %>% 
+  pull(bach) %>% 
+  mean()
+```
+
+The spatial lag for that observation is 0.206 This makes sense as it's neighbors had clearly higher values. Rather than do this for each and every observation we can utilize the function `st_lag()` which takes 3 arguments:
+
+- `x`: the numeric variable of interest,
+- `neighbors`: the list of neighbors
+- `weights`: the list of weights to be used.
+
+Let's calculate the lag for `bach` and store it in variable `bach_lag`. 
+
+```{r}
+acs_lag <- acs_nb %>% 
+  mutate(bach_lag = st_lag(bach, nb, wt)) 
+
+acs_lag %>% 
+  select(bach, bach_lag)
+
+```
+
+
+We can see that the lag is the same for the first observation as what we calculated by hand. 
+
+With this new lagged variable we can create a scatterplot that compares the original variable to the lagged variable. This is called a Moran plot. It helps us identify observations that are similar or dissimilar from their neighbors. 
+
+```{r}
+acs_lag %>% 
+  ggplot(aes(bach, bach_lag)) +
+  geom_point(alpha = 3/4)
+```
+
+There are typically a number of enhancements to this plot that are made to make it easier to comprehend. The observations are grouped by quadrant where the I is high-high (HH), II is high-low (HL), III is low-low (LL), and IV is low-high (LH). Observations that fall in the category of HH and LL indicate local clusters given that high values are around high values and low by low. The II and IV quadrants are what may be the most interesting, though. These are typically observations that might have a stark difference with their adjacent neighbors. 
+
+To improve this chart we can categorize the points and add lines indicating the means of x and y. For categorization we can use the `categorize_lisa()` function which adds the groups. To add the lines we will use `geom_vline()` and `geom_hline()` respectively. 
+
+
+```{r}
+acs_lag %>% 
+  mutate(lisa_cat = categorize_lisa(bach, bach_lag)) %>% 
+  ggplot(aes(bach, bach_lag, color = lisa_cat)) +
+  geom_point(alpha = 3/4) +
+  geom_vline(aes(xintercept = mean(bach)), lty = 2) +
+  geom_hline(aes(yintercept = mean(bach_lag)), lty = 2) +
+  labs(title = "Edu. attainment Moran plot", 
+       y = "Lagged Edu. attainment rate",
+       x = "Edu. attainment rate",
+       color = "Category")
+```
+
+Now that we have the intuition of the spatial lag and its relationship with the local clusters, we can run the LISA. 
+
+## LISA 
+
+In sfweight, LISAs are created with `local_moran()`. `local_moran()` creates a dataframe column that we can extract with `unpack()` from the tidyr package. Unfortunately `unpack()` doesn't work with sf objects so we'll need to cast `acs_lag` to a tibble with `as_tibble()`, then `unpack()`, then back to sf with `st_as_sf()`.
+
+
+```{r}
+acs_lisa <- acs_lag %>% 
+  mutate(lisa = local_moran(bach, nb, wt)) %>% 
+  as_tibble() %>% 
+  unpack(lisa) %>% 
+  st_as_sf()
+```
+
+The resulting columns provide the local I, expected I, variance, z-value, and p value of each observation. 
+ 
+```{r}
+acs_lisa %>% 
+  as_tibble() %>% 
+  select(contains("ii")) 
+```
+With this information, we can now identify where any significant clusters may be. We can do this by creating a column that classifies the LISA only if the p value is less than some threshold (alpha = 0.1, in this case). Then we can plot those classifications on our map of Boston. 
+
+
+```{r}
+acs_lisa %>% 
+  mutate(sig_clusters = ifelse(
+    # conditional statement
+    p_ii <= 0.1, 
+    # when true
+    categorize_lisa(bach, bach_lag),
+    #when false
+    NA)) %>% 
+  ggplot(aes(fill = sig_clusters)) +
+  geom_sf(color = "black", lwd = 0.2) +
+  scale_fill_manual(values = c("#528672", "#525586"), 
+                    na.translate = FALSE) +
+  labs(title = "Significant local clusters", 
+       fill = "Category")
+```
+
+This map shows us that there are three distinct local clusters. The clusters, one near Chelsea and Revere and the other containing (as far as I can guess by the shape!) Roxbury, Dorchester, and Mattapan indicate that these areas have significantly lower educational attainment rates than average. Additionally, the areas of Downtown, South Boston, and Allston all have a higher level of educational attainment. 
+

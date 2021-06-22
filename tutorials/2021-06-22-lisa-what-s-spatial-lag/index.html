@@ -1,0 +1,451 @@
+<!DOCTYPE html>
+<html lang="en-us"><head>
+  <meta charset="utf-8">
+  <title>urban informatics | All things urban and data</title>
+
+  <!-- mobile responsive meta -->
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="description" content="Urban Data Collective">
+  <meta name="author" content="Josiah Parry">
+  <meta name="generator" content="Hugo 0.82.0" />
+
+  <!-- plugins -->
+  
+  <link rel="stylesheet" href="/plugins/bootstrap/bootstrap.min.css ">
+  
+  <link rel="stylesheet" href="/plugins/slick/slick.css ">
+  
+  <link rel="stylesheet" href="/plugins/themify-icons/themify-icons.css ">
+  
+  <link rel="stylesheet" href="/plugins/venobox/venobox.css ">
+  
+
+  <!-- Main Stylesheet -->
+  
+  <link rel="stylesheet" href="/scss/style.min.css" media="screen">
+
+  <!--Favicon-->
+  <link rel="shortcut icon" href="/images/favicon.png " type="image/x-icon">
+  <link rel="icon" href="/images/favicon.png " type="image/x-icon">
+
+  <!-- google analitycs -->
+  <script>
+    (function (i, s, o, g, r, a, m) {
+      i['GoogleAnalyticsObject'] = r;
+      i[r] = i[r] || function () {
+        (i[r].q = i[r].q || []).push(arguments)
+      }, i[r].l = 1 * new Date();
+      a = s.createElement(o),
+        m = s.getElementsByTagName(o)[0];
+      a.async = 1;
+      a.src = g;
+      m.parentNode.insertBefore(a, m)
+    })(window, document, 'script', '//www.google-analytics.com/analytics.js', 'ga');
+    ga('create', 'UA-197096173-1', 'auto');
+    ga('send', 'pageview');
+  </script>
+
+</head><body>
+<!-- preloader start -->
+<div class="preloader">
+  
+</div>
+<!-- preloader end -->
+<!-- navigation -->
+<header class="navigation">
+  
+  
+  
+  <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.6.0/styles/atelier-estuary-light.min.css">
+<script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.6.0/highlight.min.js"></script>
+<script>hljs.initHighlightingOnLoad();</script>
+
+  <div class="container">
+    
+    <nav class="navbar navbar-expand-lg navbar-white bg-transparent border-bottom pl-0">
+      <a class="navbar-brand mobile-view" href="/">
+        
+         
+        
+        <h2 class="img-fluid">urban data collective </h2> 
+        </a>
+      <button class="navbar-toggler border-0" type="button" data-toggle="collapse" data-target="#navigation">
+        <i class="ti-menu h3"></i>
+      </button>
+
+      <div class="collapse navbar-collapse text-center" id="navigation">
+        <div class="desktop-view">
+          <ul class="navbar-nav mr-auto">
+            
+          </ul>
+        </div>
+
+        <a class="navbar-brand mx-auto desktop-view" href="/">
+          
+          
+          <h2 class="img-fluid">urban data collective </h2> 
+          </a>
+
+        <ul class="navbar-nav">
+          
+          
+          <li class="nav-item">
+            <a class="nav-link" href="/about">About</a>
+          </li>
+          
+          
+          
+          <li class="nav-item">
+            <a class="nav-link" href="/blog">Blog</a>
+          </li>
+          
+          
+          
+          <li class="nav-item">
+            <a class="nav-link" href="/contact">Contact</a>
+          </li>
+          
+          
+          
+          <li class="nav-item dropdown">
+            <a class="nav-link dropdown-toggle" href="#" role="button" data-toggle="dropdown" aria-haspopup="true"
+              aria-expanded="false">
+              Resources
+            </a>
+            <div class="dropdown-menu">
+              
+              <a class="dropdown-item" href="/tutorials">Tutorials</a>
+              
+              <a class="dropdown-item" href="/glossary">Glossary</a>
+              
+            </div>
+          </li>
+          
+          
+        </ul>
+
+        
+        <!-- search -->
+        <div class="search pl-lg-4">
+          <button id="searchOpen" class="search-btn"><i class="ti-search"></i></button>
+          <div class="search-wrapper">
+            <form action="//search" class="h-100">
+              <input class="search-box px-4" id="search-query" name="s" type="search" placeholder="Type & Hit Enter...">
+            </form>
+            <button id="searchClose" class="search-close"><i class="ti-close text-dark"></i></button>
+          </div>
+        </div>
+        
+
+        
+      </div>
+    </nav>
+  </div>
+</header>
+<!-- /navigation -->
+
+<section class="section-sm">
+  <div class="container">
+    <div class="row">
+      <div class="col-lg-8 mx-auto">
+        
+        <a href="/categories/tutorial"
+          class="text-primary">Tutorial</a>
+        
+        <h2>LISA, what&rsquo;s spatial lag?</h2>
+        <div class="mb-3 post-meta">
+          <span>By Josiah Parry</span>
+          
+            
+          <span> — Jun 22, 2021</span>
+          
+        </div>
+        
+        
+        
+        <div class="content mb-5">
+          <p>In the <a href="https://www.urban-informatics.org/tutorials/2021-05-07-spatial-autocorrelation-in-r/">last tutorial</a> we went over the concept of spatial autocorrelation and Moran&rsquo;s I. Moran&rsquo;s I is a global measure meaning it characterizes the entire dataset. It is helpful in informing us that there is or is not some degree of spatialness to our data. But it doesn&rsquo;t help us understand <em>where</em> clustering might occur. For that, we need to move our analysis down to a more local level.</p>
+<p>Alternative to Moran&rsquo;s I measure of global autocorrelation, we can use <strong>local indicators of spatial association (LISA)</strong>. Moran&rsquo;s I looks at all units collectively whereas LISA calculates an I for each group of neighbors. If Moran&rsquo;s I does not indicate a global autocorrelation, that does not rule out the possibility of any local clustering which can be sussed out with LISA.</p>
+<h2 id="getting-started">Getting started</h2>
+<p>For this tutorial we will use the same dataset as previously. Below is the code used to create the sf object. Note that if you haven&rsquo;t yet installed <code>{sfweight}</code> you will need to do so with <a href="https://remotes.r-lib.org/reference/install_github.html"><code>remotes::install_github(&quot;josiahparry/sfweight&quot;)</code></a>.</p>
+<div class="highlight">
+<pre class='chroma'><code class='language-r' data-lang='r'><span class='kr'><a href='https://rdrr.io/r/base/library.html'>library</a></span><span class='o'>(</span><span class='nv'><a href='https://r-spatial.github.io/sf/'>sf</a></span><span class='o'>)</span>
+<span class='kr'><a href='https://rdrr.io/r/base/library.html'>library</a></span><span class='o'>(</span><span class='nv'>sfweight</span><span class='o'>)</span>
+<span class='kr'><a href='https://rdrr.io/r/base/library.html'>library</a></span><span class='o'>(</span><span class='nv'><a href='http://tidyverse.tidyverse.org'>tidyverse</a></span><span class='o'>)</span>
+
+<span class='nv'>acs</span> <span class='o'>&lt;-</span> <span class='nf'>select</span><span class='o'>(</span><span class='nf'>uitk</span><span class='nf'>::</span><span class='nv'><a href='https://rdrr.io/pkg/uitk/man/acs_raw.html'>acs_raw</a></span>, 
+              fips <span class='o'>=</span> <span class='nv'>ct_id_10</span>, <span class='nv'>med_house_income</span>, 
+              <span class='nv'>by_pub_trans</span>, <span class='nv'>bach</span><span class='o'>)</span> <span class='o'>%&gt;%</span> 
+  <span class='nf'>mutate</span><span class='o'>(</span>fips <span class='o'>=</span> <span class='nf'><a href='https://rdrr.io/r/base/character.html'>as.character</a></span><span class='o'>(</span><span class='nv'>fips</span><span class='o'>)</span>,
+         <span class='nf'>across</span><span class='o'>(</span>.cols <span class='o'>=</span> <span class='nf'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='o'>(</span><span class='nv'>med_house_income</span>, <span class='nv'>by_pub_trans</span>, <span class='nv'>bach</span><span class='o'>)</span>, 
+                <span class='o'>~</span><span class='nf'>replace_na</span><span class='o'>(</span><span class='nv'>.x</span>, <span class='nf'><a href='https://rdrr.io/r/stats/median.html'>median</a></span><span class='o'>(</span><span class='nv'>.x</span>, na.rm <span class='o'>=</span> <span class='kc'>TRUE</span><span class='o'>)</span><span class='o'>)</span><span class='o'>)</span><span class='o'>)</span>
+
+
+<span class='nv'>acs_sf</span> <span class='o'>&lt;-</span> <span class='nf'>left_join</span><span class='o'>(</span><span class='nf'>uitk</span><span class='nf'>::</span><span class='nv'><a href='https://rdrr.io/pkg/uitk/man/suffolk_county.html'>suffolk_county</a></span>, <span class='nv'>acs</span>, by <span class='o'>=</span> <span class='s'>"fips"</span><span class='o'>)</span></code></pre>
+</div>
+<p>In order to calculate local measures of spatial autocorrelation, we will need three things:</p>
+<ol>
+<li>neighbors of each observation</li>
+<li>spatial weights</li>
+<li>spatial lag</li>
+</ol>
+<p>We&rsquo;ve previously covered the first two items, but not the third. Before we jump into spatially lagged variables, let&rsquo;s create the neighbors and weights and store them in an object <code>acs_nb</code>.</p>
+<div class="highlight">
+<pre class='chroma'><code class='language-r' data-lang='r'><span class='nv'>acs_nb</span> <span class='o'>&lt;-</span> <span class='nv'>acs_sf</span> <span class='o'>%&gt;%</span> 
+  <span class='nf'>mutate</span><span class='o'>(</span>nb <span class='o'>=</span> <span class='nf'><a href='https://rdrr.io/pkg/sfweight/man/st_neighbors.html'>st_neighbors</a></span><span class='o'>(</span><span class='nv'>geometry</span><span class='o'>)</span>,
+         wt <span class='o'>=</span> <span class='nf'><a href='https://rdrr.io/pkg/sfweight/man/st_weights.html'>st_weights</a></span><span class='o'>(</span><span class='nv'>nb</span><span class='o'>)</span><span class='o'>)</span></code></pre>
+</div>
+<h2 id="the-spatial-lag">The spatial lag</h2>
+<p>With the neighbors and weight matrix calculated, we can begin the process of calculating our LISA. In order to do so we must calculate the <strong>spatial lag</strong>. The spatial lag takes our variable of interest and averages it for a location&rsquo;s neighbors. By taking the average we are accounting for neighborhood effects and this local average can then be compared with the locations actual value to see if there is a discrepancy between itself and its neighbors.</p>
+<p>Let&rsquo;s look at the first observation in our <code>acs_nb</code> object to see how this is calculated. First we&rsquo;ll take the neighbor indexes from the <code>nb</code> list column. Then we&rsquo;ll use that to grab those rows and the original observation itself using <code>slice()</code>.</p>
+<div class="highlight">
+<pre class='chroma'><code class='language-r' data-lang='r'><span class='c'># grab neighbors</span>
+<span class='nv'>nb_index</span> <span class='o'>&lt;-</span> <span class='nf'>slice</span><span class='o'>(</span><span class='nv'>acs_nb</span>, <span class='m'>1</span><span class='o'>)</span> <span class='o'>%&gt;%</span> 
+  <span class='nf'>pull</span><span class='o'>(</span><span class='nv'>nb</span><span class='o'>)</span> <span class='o'>%&gt;%</span> 
+  <span class='nf'>pluck</span><span class='o'>(</span><span class='m'>1</span><span class='o'>)</span>
+
+<span class='c'># slice to only neighbor rows and original row</span>
+<span class='nv'>nb_1</span> <span class='o'>&lt;-</span> <span class='nv'>acs_nb</span> <span class='o'>%&gt;%</span> 
+  <span class='nf'>slice</span><span class='o'>(</span><span class='m'>1</span>, <span class='nv'>nb_index</span><span class='o'>)</span> <span class='o'>%&gt;%</span> 
+  <span class='nf'>select</span><span class='o'>(</span><span class='nv'>bach</span><span class='o'>)</span>
+
+<span class='c'># plot bach</span>
+<span class='nf'>ggplot</span><span class='o'>(</span><span class='nv'>nb_1</span>, <span class='nf'>aes</span><span class='o'>(</span>fill <span class='o'>=</span> <span class='nv'>bach</span><span class='o'>)</span><span class='o'>)</span> <span class='o'>+</span> 
+  <span class='nf'>geom_sf</span><span class='o'>(</span>lwd <span class='o'>=</span> <span class='m'>0.2</span>, color <span class='o'>=</span> <span class='s'>"black"</span><span class='o'>)</span> <span class='o'>+</span>
+  <span class='nf'>scale_fill_gradient</span><span class='o'>(</span>high <span class='o'>=</span> <span class='s'>"#528672"</span><span class='o'>)</span>
+</code></pre>
+<p><img src="figs/unnamed-chunk-4-1.png" width="700px" style="display: block; margin: auto;" /></p>
+</div>
+<p>We can see that the middle census tract may has quite a low level of educational attainment when compared to the tract above and to it&rsquo;s lower right. To calculate the spatial lag of this census tract, we need to take the average of all observations. Their values are as follows</p>
+<div class="highlight">
+<pre class='chroma'><code class='language-r' data-lang='r'><span class='nv'>nb_1</span>
+<span class='c'>#&gt; Simple feature collection with 8 features and 1 field</span>
+<span class='c'>#&gt; Geometry type: MULTIPOLYGON</span>
+<span class='c'>#&gt; Dimension:     XY</span>
+<span class='c'>#&gt; Bounding box:  xmin: -71.07854 ymin: 42.28378 xmax: -71.03529 ymax: 42.32171</span>
+<span class='c'>#&gt; Geodetic CRS:  WGS 84</span>
+<span class='c'>#&gt; <span style='color: #555555;'># A tibble: 8 x 2</span></span>
+<span class='c'>#&gt;    bach                                                                 geometry</span>
+<span class='c'>#&gt;   <span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span>                                                       </span><span style='color: #555555;font-style: italic;'>&lt;MULTIPOLYGON [°]&gt;</span></span>
+<span class='c'>#&gt; <span style='color: #555555;'>1</span><span> 0.124 (((-71.06249 42.29221, -71.06234 42.29273, -71.06226 42.29301, -71.0621…</span></span>
+<span class='c'>#&gt; <span style='color: #555555;'>2</span><span> 0.305 (((-71.05147 42.28931, -71.05136 42.28933, -71.05032 42.28961, -71.0484…</span></span>
+<span class='c'>#&gt; <span style='color: #555555;'>3</span><span> 0.363 (((-71.06127 42.30907, -71.06103 42.30961, -71.061 42.30968, -71.06083 …</span></span>
+<span class='c'>#&gt; <span style='color: #555555;'>4</span><span> 0.141 (((-71.06649 42.30671, -71.06584 42.30731, -71.06551 42.30762, -71.0650…</span></span>
+<span class='c'>#&gt; <span style='color: #555555;'>5</span><span> 0.103 (((-71.07364 42.29937, -71.07293 42.29958, -71.07274 42.29966, -71.0726…</span></span>
+<span class='c'>#&gt; <span style='color: #555555;'>6</span><span> 0.198 (((-71.07212 42.29551, -71.07133 42.29568, -71.07115 42.29573, -71.0702…</span></span>
+<span class='c'>#&gt; <span style='color: #555555;'>7</span><span> 0.126 (((-71.07851 42.28943, -71.0784 42.28981, -71.07831 42.29017, -71.07826…</span></span>
+<span class='c'>#&gt; <span style='color: #555555;'>8</span><span> 0.212 (((-71.06373 42.28778, -71.06364 42.28811, -71.06351 42.28855, -71.0634…</span></span></code></pre>
+</div>
+<p>To calculate the average we can pull out the <code>bach</code> vector, excluding the observation itself, and take the mean.</p>
+<div class="highlight">
+<pre class='chroma'><code class='language-r' data-lang='r'><span class='nv'>nb_1</span> <span class='o'>%&gt;%</span> 
+  <span class='nf'>slice</span><span class='o'>(</span><span class='o'>-</span><span class='m'>1</span><span class='o'>)</span> <span class='o'>%&gt;%</span> 
+  <span class='nf'>pull</span><span class='o'>(</span><span class='nv'>bach</span><span class='o'>)</span> <span class='o'>%&gt;%</span> 
+  <span class='nf'><a href='https://rdrr.io/r/base/mean.html'>mean</a></span><span class='o'>(</span><span class='o'>)</span>
+<span class='c'>#&gt; [1] 0.2069233</span></code></pre>
+</div>
+<p>The spatial lag for that observation is 0.206 This makes sense as it&rsquo;s neighbors had clearly higher values. Rather than do this for each and every observation we can utilize the function <a href="https://rdrr.io/pkg/sfweight/man/st_lag.html"><code>st_lag()</code></a> which takes 3 arguments:</p>
+<ul>
+<li><code>x</code>: the numeric variable of interest,</li>
+<li><code>neighbors</code>: the list of neighbors</li>
+<li><code>weights</code>: the list of weights to be used.</li>
+</ul>
+<p>Let&rsquo;s calculate the lag for <code>bach</code> and store it in variable <code>bach_lag</code>.</p>
+<div class="highlight">
+<pre class='chroma'><code class='language-r' data-lang='r'><span class='nv'>acs_lag</span> <span class='o'>&lt;-</span> <span class='nv'>acs_nb</span> <span class='o'>%&gt;%</span> 
+  <span class='nf'>mutate</span><span class='o'>(</span>bach_lag <span class='o'>=</span> <span class='nf'><a href='https://rdrr.io/pkg/sfweight/man/st_lag.html'>st_lag</a></span><span class='o'>(</span><span class='nv'>bach</span>, <span class='nv'>nb</span>, <span class='nv'>wt</span><span class='o'>)</span><span class='o'>)</span> 
+
+<span class='nv'>acs_lag</span> <span class='o'>%&gt;%</span> 
+  <span class='nf'>select</span><span class='o'>(</span><span class='nv'>bach</span>, <span class='nv'>bach_lag</span><span class='o'>)</span>
+<span class='c'>#&gt; Simple feature collection with 203 features and 2 fields</span>
+<span class='c'>#&gt; Geometry type: MULTIPOLYGON</span>
+<span class='c'>#&gt; Dimension:     XY</span>
+<span class='c'>#&gt; Bounding box:  xmin: -71.19125 ymin: 42.22793 xmax: -70.9201 ymax: 42.45012</span>
+<span class='c'>#&gt; Geodetic CRS:  WGS 84</span>
+<span class='c'>#&gt; <span style='color: #555555;'># A tibble: 203 x 3</span></span>
+<span class='c'>#&gt;     bach bach_lag                                                       geometry</span>
+<span class='c'>#&gt;    <span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span>    </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span>                                             </span><span style='color: #555555;font-style: italic;'>&lt;MULTIPOLYGON [°]&gt;</span></span>
+<span class='c'>#&gt; <span style='color: #555555;'> 1</span><span> 0.124    0.207 (((-71.06249 42.29221, -71.06234 42.29273, -71.06226 42.29301…</span></span>
+<span class='c'>#&gt; <span style='color: #555555;'> 2</span><span> 0.305    0.208 (((-71.05147 42.28931, -71.05136 42.28933, -71.05032 42.28961…</span></span>
+<span class='c'>#&gt; <span style='color: #555555;'> 3</span><span> 0.405    0.381 (((-71.11093 42.35047, -71.11093 42.3505, -71.11092 42.35054,…</span></span>
+<span class='c'>#&gt; <span style='color: #555555;'> 4</span><span> 0.141    0.289 (((-71.06944 42.346, -71.0691 42.34661, -71.06884 42.3471, -7…</span></span>
+<span class='c'>#&gt; <span style='color: #555555;'> 5</span><span> 0.208    0.264 (((-71.13397 42.25431, -71.13353 42.25476, -71.13274 42.25561…</span></span>
+<span class='c'>#&gt; <span style='color: #555555;'> 6</span><span> 0.365    0.428 (((-71.04707 42.3397, -71.04628 42.34037, -71.0449 42.34153, …</span></span>
+<span class='c'>#&gt; <span style='color: #555555;'> 7</span><span> 0.159    0.179 (((-71.01324 42.38301, -71.01231 42.38371, -71.01162 42.3842,…</span></span>
+<span class='c'>#&gt; <span style='color: #555555;'> 8</span><span> 0.230    0.159 (((-71.00113 42.3871, -71.001 42.38722, -71.00074 42.3875, -7…</span></span>
+<span class='c'>#&gt; <span style='color: #555555;'> 9</span><span> 0.266    0.296 (((-71.05079 42.32083, -71.0506 42.32076, -71.05047 42.32079,…</span></span>
+<span class='c'>#&gt; <span style='color: #555555;'>10</span><span> 0.199    0.184 (((-71.11952 42.28648, -71.11949 42.2878, -71.11949 42.28792,…</span></span>
+<span class='c'>#&gt; <span style='color: #555555;'># … with 193 more rows</span></span></code></pre>
+</div>
+<p>We can see that the lag is the same for the first observation as what we calculated by hand.</p>
+<p>With this new lagged variable we can create a scatterplot that compares the original variable to the lagged variable. This is called a Moran plot. It helps us identify observations that are similar or dissimilar from their neighbors.</p>
+<div class="highlight">
+<pre class='chroma'><code class='language-r' data-lang='r'><span class='nv'>acs_lag</span> <span class='o'>%&gt;%</span> 
+  <span class='nf'>ggplot</span><span class='o'>(</span><span class='nf'>aes</span><span class='o'>(</span><span class='nv'>bach</span>, <span class='nv'>bach_lag</span><span class='o'>)</span><span class='o'>)</span> <span class='o'>+</span>
+  <span class='nf'>geom_point</span><span class='o'>(</span>alpha <span class='o'>=</span> <span class='m'>3</span><span class='o'>/</span><span class='m'>4</span><span class='o'>)</span>
+</code></pre>
+<p><img src="figs/unnamed-chunk-8-1.png" width="700px" style="display: block; margin: auto;" /></p>
+</div>
+<p>There are typically a number of enhancements to this plot that are made to make it easier to comprehend. The observations are grouped by quadrant where the I is high-high (HH), II is high-low (HL), III is low-low (LL), and IV is low-high (LH). Observations that fall in the category of HH and LL indicate local clusters given that high values are around high values and low by low. The II and IV quadrants are what may be the most interesting, though. These are typically observations that might have a stark difference with their adjacent neighbors.</p>
+<p>To improve this chart we can categorize the points and add lines indicating the means of x and y. For categorization we can use the <a href="https://rdrr.io/pkg/sfweight/man/categorize_lisa.html"><code>categorize_lisa()</code></a> function which adds the groups. To add the lines we will use <code>geom_vline()</code> and <code>geom_hline()</code> respectively.</p>
+<div class="highlight">
+<pre class='chroma'><code class='language-r' data-lang='r'><span class='nv'>acs_lag</span> <span class='o'>%&gt;%</span> 
+  <span class='nf'>mutate</span><span class='o'>(</span>lisa_cat <span class='o'>=</span> <span class='nf'><a href='https://rdrr.io/pkg/sfweight/man/categorize_lisa.html'>categorize_lisa</a></span><span class='o'>(</span><span class='nv'>bach</span>, <span class='nv'>bach_lag</span><span class='o'>)</span><span class='o'>)</span> <span class='o'>%&gt;%</span> 
+  <span class='nf'>ggplot</span><span class='o'>(</span><span class='nf'>aes</span><span class='o'>(</span><span class='nv'>bach</span>, <span class='nv'>bach_lag</span>, color <span class='o'>=</span> <span class='nv'>lisa_cat</span><span class='o'>)</span><span class='o'>)</span> <span class='o'>+</span>
+  <span class='nf'>geom_point</span><span class='o'>(</span>alpha <span class='o'>=</span> <span class='m'>3</span><span class='o'>/</span><span class='m'>4</span><span class='o'>)</span> <span class='o'>+</span>
+  <span class='nf'>geom_vline</span><span class='o'>(</span><span class='nf'>aes</span><span class='o'>(</span>xintercept <span class='o'>=</span> <span class='nf'><a href='https://rdrr.io/r/base/mean.html'>mean</a></span><span class='o'>(</span><span class='nv'>bach</span><span class='o'>)</span><span class='o'>)</span>, lty <span class='o'>=</span> <span class='m'>2</span><span class='o'>)</span> <span class='o'>+</span>
+  <span class='nf'>geom_hline</span><span class='o'>(</span><span class='nf'>aes</span><span class='o'>(</span>yintercept <span class='o'>=</span> <span class='nf'><a href='https://rdrr.io/r/base/mean.html'>mean</a></span><span class='o'>(</span><span class='nv'>bach_lag</span><span class='o'>)</span><span class='o'>)</span>, lty <span class='o'>=</span> <span class='m'>2</span><span class='o'>)</span> <span class='o'>+</span>
+  <span class='nf'>labs</span><span class='o'>(</span>title <span class='o'>=</span> <span class='s'>"Edu. attainment Moran plot"</span>, 
+       y <span class='o'>=</span> <span class='s'>"Lagged Edu. attainment rate"</span>,
+       x <span class='o'>=</span> <span class='s'>"Edu. attainment rate"</span>,
+       color <span class='o'>=</span> <span class='s'>"Category"</span><span class='o'>)</span>
+</code></pre>
+<p><img src="figs/unnamed-chunk-9-1.png" width="700px" style="display: block; margin: auto;" /></p>
+</div>
+<p>Now that we have the intuition of the spatial lag and its relationship with the local clusters, we can run the LISA.</p>
+<h2 id="lisa">LISA</h2>
+<p>In sfweight, LISAs are created with <a href="https://rdrr.io/pkg/sfweight/man/local_moran.html"><code>local_moran()</code></a>. <a href="https://rdrr.io/pkg/sfweight/man/local_moran.html"><code>local_moran()</code></a> creates a dataframe column that we can extract with <code>unpack()</code> from the tidyr package. Unfortunately <code>unpack()</code> doesn&rsquo;t work with sf objects so we&rsquo;ll need to cast <code>acs_lag</code> to a tibble with <code>as_tibble()</code>, then <code>unpack()</code>, then back to sf with <a href="https://r-spatial.github.io/sf/reference/st_as_sf.html"><code>st_as_sf()</code></a>.</p>
+<div class="highlight">
+<pre class='chroma'><code class='language-r' data-lang='r'><span class='nv'>acs_lisa</span> <span class='o'>&lt;-</span> <span class='nv'>acs_lag</span> <span class='o'>%&gt;%</span> 
+  <span class='nf'>mutate</span><span class='o'>(</span>lisa <span class='o'>=</span> <span class='nf'><a href='https://rdrr.io/pkg/sfweight/man/local_moran.html'>local_moran</a></span><span class='o'>(</span><span class='nv'>bach</span>, <span class='nv'>nb</span>, <span class='nv'>wt</span><span class='o'>)</span><span class='o'>)</span> <span class='o'>%&gt;%</span> 
+  <span class='nf'>as_tibble</span><span class='o'>(</span><span class='o'>)</span> <span class='o'>%&gt;%</span> 
+  <span class='nf'>unpack</span><span class='o'>(</span><span class='nv'>lisa</span><span class='o'>)</span> <span class='o'>%&gt;%</span> 
+  <span class='nf'><a href='https://r-spatial.github.io/sf/reference/st_as_sf.html'>st_as_sf</a></span><span class='o'>(</span><span class='o'>)</span></code></pre>
+</div>
+<p>The resulting columns provide the local I, expected I, variance, z-value, and p value of each observation.</p>
+<div class="highlight">
+<pre class='chroma'><code class='language-r' data-lang='r'><span class='nv'>acs_lisa</span> <span class='o'>%&gt;%</span> 
+  <span class='nf'>as_tibble</span><span class='o'>(</span><span class='o'>)</span> <span class='o'>%&gt;%</span> 
+  <span class='nf'>select</span><span class='o'>(</span><span class='nf'>contains</span><span class='o'>(</span><span class='s'>"ii"</span><span class='o'>)</span><span class='o'>)</span> 
+<span class='c'>#&gt; <span style='color: #555555;'># A tibble: 203 x 5</span></span>
+<span class='c'>#&gt;         ii     e_ii var_ii    z_ii    p_ii</span>
+<span class='c'>#&gt;      <span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span>    </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span>  </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span>   </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span>   </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span></span>
+<span class='c'>#&gt; <span style='color: #555555;'> 1</span><span>  0.315  -</span><span style='color: #BB0000;'>0.004</span><span style='color: #BB0000;text-decoration: underline;'>95</span><span>  0.138  0.863  0.194  </span></span>
+<span class='c'>#&gt; <span style='color: #555555;'> 2</span><span> -</span><span style='color: #BB0000;'>0.137</span><span>  -</span><span style='color: #BB0000;'>0.004</span><span style='color: #BB0000;text-decoration: underline;'>95</span><span>  0.328 -</span><span style='color: #BB0000;'>0.231</span><span>  0.592  </span></span>
+<span class='c'>#&gt; <span style='color: #555555;'> 3</span><span>  1.22   -</span><span style='color: #BB0000;'>0.004</span><span style='color: #BB0000;text-decoration: underline;'>95</span><span>  0.245  2.47   0.006</span><span style='text-decoration: underline;'>78</span></span>
+<span class='c'>#&gt; <span style='color: #555555;'> 4</span><span> -</span><span style='color: #BB0000;'>0.253</span><span>  -</span><span style='color: #BB0000;'>0.004</span><span style='color: #BB0000;text-decoration: underline;'>95</span><span>  0.161 -</span><span style='color: #BB0000;'>0.618</span><span>  0.732  </span></span>
+<span class='c'>#&gt; <span style='color: #555555;'> 5</span><span> -</span><span style='color: #BB0000;'>0.036</span><span style='color: #BB0000;text-decoration: underline;'>3</span><span> -</span><span style='color: #BB0000;'>0.004</span><span style='color: #BB0000;text-decoration: underline;'>95</span><span>  0.245 -</span><span style='color: #BB0000;'>0.063</span><span style='color: #BB0000;text-decoration: underline;'>4</span><span> 0.525  </span></span>
+<span class='c'>#&gt; <span style='color: #555555;'> 6</span><span>  1.23   -</span><span style='color: #BB0000;'>0.004</span><span style='color: #BB0000;text-decoration: underline;'>95</span><span>  0.245  2.49   0.006</span><span style='text-decoration: underline;'>37</span></span>
+<span class='c'>#&gt; <span style='color: #555555;'> 7</span><span>  0.379  -</span><span style='color: #BB0000;'>0.004</span><span style='color: #BB0000;text-decoration: underline;'>95</span><span>  0.138  1.03   0.150  </span></span>
+<span class='c'>#&gt; <span style='color: #555555;'> 8</span><span>  0.103  -</span><span style='color: #BB0000;'>0.004</span><span style='color: #BB0000;text-decoration: underline;'>95</span><span>  0.195  0.245  0.403  </span></span>
+<span class='c'>#&gt; <span style='color: #555555;'> 9</span><span>  0.047</span><span style='text-decoration: underline;'>4</span><span> -</span><span style='color: #BB0000;'>0.004</span><span style='color: #BB0000;text-decoration: underline;'>95</span><span>  0.494  0.074</span><span style='text-decoration: underline;'>5</span><span> 0.470  </span></span>
+<span class='c'>#&gt; <span style='color: #555555;'>10</span><span>  0.195  -</span><span style='color: #BB0000;'>0.004</span><span style='color: #BB0000;text-decoration: underline;'>95</span><span>  0.245  0.405  0.343  </span></span>
+<span class='c'>#&gt; <span style='color: #555555;'># … with 193 more rows</span></span></code></pre>
+</div>
+<p>With this information, we can now identify where any significant clusters may be. We can do this by creating a column that classifies the LISA only if the p value is less than some threshold (alpha = 0.1, in this case). Then we can plot those classifications on our map of Boston.</p>
+<div class="highlight">
+<pre class='chroma'><code class='language-r' data-lang='r'><span class='nv'>acs_lisa</span> <span class='o'>%&gt;%</span> 
+  <span class='nf'>mutate</span><span class='o'>(</span>sig_clusters <span class='o'>=</span> <span class='nf'><a href='https://rdrr.io/r/base/ifelse.html'>ifelse</a></span><span class='o'>(</span>
+    <span class='c'># conditional statement</span>
+    <span class='nv'>p_ii</span> <span class='o'>&lt;=</span> <span class='m'>0.1</span>, 
+    <span class='c'># when true</span>
+    <span class='nf'><a href='https://rdrr.io/pkg/sfweight/man/categorize_lisa.html'>categorize_lisa</a></span><span class='o'>(</span><span class='nv'>bach</span>, <span class='nv'>bach_lag</span><span class='o'>)</span>,
+    <span class='c'>#when false</span>
+    <span class='kc'>NA</span><span class='o'>)</span><span class='o'>)</span> <span class='o'>%&gt;%</span> 
+  <span class='nf'>ggplot</span><span class='o'>(</span><span class='nf'>aes</span><span class='o'>(</span>fill <span class='o'>=</span> <span class='nv'>sig_clusters</span><span class='o'>)</span><span class='o'>)</span> <span class='o'>+</span>
+  <span class='nf'>geom_sf</span><span class='o'>(</span>color <span class='o'>=</span> <span class='s'>"black"</span>, lwd <span class='o'>=</span> <span class='m'>0.2</span><span class='o'>)</span> <span class='o'>+</span>
+  <span class='nf'>scale_fill_manual</span><span class='o'>(</span>values <span class='o'>=</span> <span class='nf'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='o'>(</span><span class='s'>"#528672"</span>, <span class='s'>"#525586"</span><span class='o'>)</span>, 
+                    na.translate <span class='o'>=</span> <span class='kc'>FALSE</span><span class='o'>)</span> <span class='o'>+</span>
+  <span class='nf'>labs</span><span class='o'>(</span>title <span class='o'>=</span> <span class='s'>"Significant local clusters"</span>, 
+       fill <span class='o'>=</span> <span class='s'>"Category"</span><span class='o'>)</span>
+</code></pre>
+<p><img src="figs/unnamed-chunk-12-1.png" width="700px" style="display: block; margin: auto;" /></p>
+</div>
+<p>This map shows us that there are three distinct local clusters. The clusters, one near Chelsea and Revere and the other containing (as far as I can guess by the shape!) Roxbury, Dorchester, and Mattapan indicate that these areas have significantly lower educational attainment rates than average. Additionally, the areas of Downtown, South Boston, and Allston all have a higher level of educational attainment.</p>
+
+        </div>
+
+        
+        
+        <script src="https://utteranc.es/client.js"
+          repo="josiahparry/urban-informatics.org"
+          issue-term="pathname"
+          label="utterance"
+          theme="github-light"
+          crossorigin="anonymous"
+          async>
+        </script>
+
+      </div>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="container">
+    <div class="row justify-content-center">
+      <div class="col-12 text-center mb-5">
+        <a href="/">
+          
+          <h4>urban data collective | all things urban and data</h4>
+          </a>
+      </div>
+     
+      <div class="col-12 border-top py-4 text-center">
+        copyright © 2021 urban data collective all rights reserved
+      </div>
+    </div>
+  </div>
+</footer>
+
+
+<section class="section-sm">
+  <div class="container">
+
+    
+    <div class="row">
+      <div class="col-lg-8 mx-auto text-center">
+        <h2>Newsletter</h2>
+        <p class="text-light px-md-5 py-4 border-left border-right border-primary">
+          Sign up for our (infrequent) newsletter to stay up to date.</p>
+        <form action="https://josiahparry.substack.com/api/v1/free?nojs=true" 
+  method="post" novalidate="" class="row justify-content-center">
+          <div class="input-group col-md-8">
+            <input type="text" name = "email" class="form-control" placeholder="Your Email Address">
+            <input type="hidden" name="first_url" value="https://josiahparry.substack.com/p/coming-soon">
+            <input type="hidden" name="first_referrer" value="https://substack.com/">
+            <input type="hidden" name="current_url" value="https://josiahparry.substack.com/embed">
+            <input type="hidden" name="current_referrer" value="http://localhost:4321/">
+            <input type="hidden" name="referral_code">
+            <input type="hidden" name="source" value="embed">
+            <div class="input-group-append">
+              <button class="input-group-text btn btn-primary" type="submit" tabindex="0">Subscribe</button>
+            </div>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+
+
+<script>
+  var indexURL = "/index.json"
+</script>
+
+<!-- JS Plugins -->
+
+<script src="/plugins/jQuery/jquery.min.js"></script>
+
+<script src="/plugins/bootstrap/bootstrap.min.js"></script>
+
+<script src="/plugins/slick/slick.min.js"></script>
+
+<script src="/plugins/venobox/venobox.min.js"></script>
+
+<script src="/plugins/search/fuse.min.js"></script>
+
+<script src="/plugins/search/mark.js"></script>
+
+<script src="/plugins/search/search.js"></script>
+
+<!-- Main Script -->
+
+<script src="/js/script.min.js"></script>
+
+
+
+</body>
+</html>

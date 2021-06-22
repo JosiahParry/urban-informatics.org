@@ -6,7 +6,16 @@
     <description>Recent content on urban informatics | All things urban and data</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <lastBuildDate>Sat, 15 May 2021 00:00:00 +0000</lastBuildDate><atom:link href="/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Tue, 22 Jun 2021 00:00:00 +0000</lastBuildDate><atom:link href="/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>LISA, what&#39;s spatial lag?</title>
+      <link>/tutorials/2021-06-22-lisa-what-s-spatial-lag/</link>
+      <pubDate>Tue, 22 Jun 2021 00:00:00 +0000</pubDate>
+      
+      <guid>/tutorials/2021-06-22-lisa-what-s-spatial-lag/</guid>
+      <description>In the last tutorial we went over the concept of spatial autocorrelation and Moran&amp;rsquo;s I.</description>
+    </item>
+    
     <item>
       <title>Understanding Places of Interest</title>
       <link>/blog/2021-04-26-understanding-places-of-interest/</link>

@@ -4,8 +4,8 @@ author: Josiah Parry
 date: '2021-05-07'
 image: images/edu-hist.png
 slug: []
-categories: []
-tags: []
+categories: [tutorial]
+tags: [sfweight, rspatial]
 type: tutorial
 ---
 

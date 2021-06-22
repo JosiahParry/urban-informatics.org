@@ -277,3 +277,14 @@
 #' 
 #' summary(error_lm)
 #' xs
+#' 
+#' 
+#' 
+#'
+# ## TO cover in other post:
+# 
+# - spatial lag
+# - local autocorrelation
+# - regression
+# 
+# ------
